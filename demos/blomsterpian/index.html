@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blomsterpian – Bodøs hjerte for håndverkede blomster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #1E3A2F;
+      --green2: #2E5241;
+      --cream:  #F7F2EA;
+      --rose:   #C8896A;
+      --rose-lt:#EDD5C4;
+      --text:   #1A1A1A;
+      --muted:  #6B7280;
+      --white:  #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: rgba(30, 58, 47, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--rose);
+      color: var(--white) !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 2px;
+    }
+
+    .nav-cta:hover { background: #b8795a !important; }
+
+    /* ─── HERO ───────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 680px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1487530811015-780f2f7b5405?w=1920&q=85&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,25,18,0.55) 0%, rgba(10,25,18,0.7) 100%);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 700px;
+      padding: 0 1.5rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose-lt);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--rose);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #b8795a;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.55);
+      color: var(--white);
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-left: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block; width: 1px; height: 2.5rem;
+      background: rgba(255,255,255,0.3);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%,100% { transform: scaleY(1); opacity: 0.3; }
+      50% { transform: scaleY(0.5); opacity: 0.8; }
+    }
+
+    /* ─── SHARED ─────────────────────────────── */
+    section { padding: 6rem 2.5rem; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-body {
+      font-size: 1.02rem; line-height: 1.75;
+      color: var(--muted); font-weight: 300;
+      max-width: 580px;
+    }
+
+    /* ─── ABOUT ──────────────────────────────── */
+    .about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    .about-img {
+      border-radius: 2px; overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .about-img:hover img { transform: scale(1.03); }
+
+    .about-text { }
+    .about-text .section-body { max-width: 100%; }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+
+    .stat {
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: 2px;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 300;
+      color: var(--green); line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem; color: var(--muted);
+      font-weight: 400; letter-spacing: 0.03em;
+    }
+
+    /* ─── PRODUCTS ───────────────────────────── */
+    .products { background: var(--white); }
+
+    .products-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 3.5rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      border-radius: 2px; overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+
+    .product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+
+    .product-img {
+      aspect-ratio: 3/4; overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img img { transform: scale(1.04); }
+
+    .product-info {
+      padding: 1.5rem 1.2rem;
+      background: var(--cream);
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--green); margin-bottom: 0.4rem;
+    }
+
+    .product-desc {
+      font-size: 0.88rem; color: var(--muted);
+      line-height: 1.6; margin-bottom: 1rem;
+    }
+
+    .product-price {
+      font-size: 0.92rem; font-weight: 600;
+      color: var(--rose);
+    }
+
+    /* ─── PROCESS ────────────────────────────── */
+    .process {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .process .section-title { color: var(--white); }
+    .process .section-label { color: var(--rose-lt); }
+
+    .process-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 4rem;
+    }
+
+    .step {
+      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      border-left: 2px solid var(--rose);
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: rgba(255,255,255,0.18);
+      line-height: 1; margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem; line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+    }
+
+    /* ─── CTA BANNER ─────────────────────────── */
+    .cta-banner {
+      position: relative; overflow: hidden;
+      padding: 8rem 2.5rem;
+      text-align: center;
+      background: var(--cream);
+    }
+
+    .cta-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1490750967868-88df5691cc08?w=1600&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+      opacity: 0.12;
+    }
+
+    .cta-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+
+    .cta-banner .section-title { margin-bottom: 1.2rem; }
+
+    .cta-banner .section-body {
+      margin: 0 auto 2.5rem; max-width: 480px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--green);
+      color: rgba(255,255,255,0.7);
+      padding: 3.5rem 2.5rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-brand .nav-logo { display: block; margin-bottom: 1rem; }
+
+    .footer-brand p {
+      font-size: 0.88rem; line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .footer-col h4 {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 1.2rem;
+    }
+
+    .footer-col p, .footer-col a {
+      font-size: 0.88rem; line-height: 2;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none; display: block;
+    }
+
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1200px; margin: 2.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex; justify-content: space-between;
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── DEMO BADGE ─────────────────────────── */
+    .demo-badge {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      z-index: 999;
+      background: var(--rose);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      border-radius: 24px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .demo-badge::before { content: '✦'; font-size: 0.7rem; }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-img { aspect-ratio: 16/9; }
+      .products-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .product-img { aspect-ratio: 16/9; }
+      .process-steps { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { font-size: 2.6rem; }
+      .btn-outline { display: none; }
+      .about-stats { grid-template-columns: 1fr; }
+      .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Blomsterpian</a>
+    <ul class="nav-links">
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#produkter">Produkter</a></li>
+      <li><a href="#bestilling">Hvordan bestille</a></li>
+      <li><a href="#kontakt" class="nav-cta">Bestill nå</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Håndverk siden 1998 · Bodø</p>
+      <h1 class="hero-title">Blomster som <em>berører</em><br>hjertet</h1>
+      <p class="hero-sub">Ferske buketter og dekorasjoner laget med omsorg.<br>Levert til døren din i Bodø – samme dag.</p>
+      <a href="#bestilling" class="btn-primary">Bestill blomster</a>
+      <a href="#produkter" class="btn-outline">Se utvalget</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="om-oss">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop"
+            alt="Blomsterdekoratør hos Blomsterpian"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-text">
+          <p class="section-label">Vår historie</p>
+          <h2 class="section-title">Bodøs lokale<br>blomsterspesialister</h2>
+          <p class="section-body">
+            I hjertet av City Nord kjøpesenter finner du oss — et dedikert team av blomsterdekoratører med lidenskap for håndverk. Vi tror at riktige blomster kan forvandle en dag, markere et øyeblikk og uttrykke det du kanskje ikke finner ord for.
+          </p>
+          <p class="section-body" style="margin-top: 1rem;">
+            Hvert arrangement lages for hånd, med ferske blomster hentet inn ukentlig. Vi leverer i hele Bodø og sender dessuten buketter over hele verden gjennom Interflora-nettverket.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-num">+25</div>
+              <div class="stat-label">År med erfaring</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">400+</div>
+              <div class="stat-label">Partnerblomsteri i Norge</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">1 dag</div>
+              <div class="stat-label">Levering i Bodø</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Håndlaget</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="produkter">
+    <div class="section-inner">
+      <div class="products-header">
+        <div>
+          <p class="section-label">Vårt utvalg</p>
+          <h2 class="section-title">Lagd med<br>hjerte og hånd</h2>
+        </div>
+        <a href="#bestilling" class="btn-primary">Se alle produkter</a>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://images.unsplash.com/photo-1537530360953-3b8b369e01fe?w=600&q=80&auto=format&fit=crop"
+              alt="Håndlaget bukett"
+              loading="lazy"
+            />
+          </div>
+          <div class="product-info">
+            <div class="product-name">Sesongens buketter</div>
+            <div class="product-desc">Håndplukkede blomster fra dagens innleveranse. Ingen bukett er lik.</div>
+            <div class="product-price">fra 479 kr</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&q=80&auto=format&fit=crop"
+              alt="Blomsterdekorasjoner"
+              loading="lazy"
+            />
+          </div>
+          <div class="product-info">
+            <div class="product-name">Dekorasjoner</div>
+            <div class="product-desc">Til bryllup, konfirmasjon, begravelse og alle livets store og små øyeblikk.</div>
+            <div class="product-price">Pris på forespørsel</div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-img">
+            <img
+              src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80&auto=format&fit=crop"
+              alt="Planter til hjemmet"
+              loading="lazy"
+            />
+          </div>
+          <div class="product-info">
+            <div class="product-name">Planter & potter</div>
+            <div class="product-desc">Grønne venner som lyser opp ethvert rom. Perfekt gave eller til deg selv.</div>
+            <div class="product-price">fra 299 kr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="bestilling">
+    <div class="section-inner">
+      <p class="section-label">Slik fungerer det</p>
+      <h2 class="section-title">Bestill på 3 minutter</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-title">Velg eller beskriv</div>
+          <div class="step-desc">Bla gjennom utvalget vårt eller send oss en melding med anledning, budget og eventuelle ønsker. Vi hjelper deg gjerne.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-title">Vi lager for deg</div>
+          <div class="step-desc">Våre blomsterdekoratører lager arrangementen ditt for hånd, med ferske blomster fra dagens leveranse.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-title">Levert til døren</div>
+          <div class="step-desc">Vi leverer samme dag i Bodø for bestillinger lagt inn innen kl. 13:00. Eller hent i butikken på City Nord.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="kontakt">
+    <div class="cta-bg"></div>
+    <div class="cta-inner">
+      <p class="section-label">La oss hjelpe deg</p>
+      <h2 class="section-title">Hva vil du<br>si med blomster?</h2>
+      <p class="section-body">
+        Ring oss, send en melding eller bestill direkte på nett. Vi svarer raskt og finner alltid en løsning for deg.
+      </p>
+      <a href="tel:93470100" class="btn-primary" style="background: var(--green)">📞 934 70 100</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="color: white;">Blomsterpian</a>
+        <p>Bodøs lokale blomsterspesialister. Håndverk og lidenskap siden 1998.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Åpningstider</h4>
+        <p>Mandag–fredag: 10–21</p>
+        <p>Lørdag: 10–19</p>
+        <p>Søndag: Stengt</p>
+      </div>
+      <div class="footer-col">
+        <h4>Finn oss</h4>
+        <p>City Nord kjøpesenter</p>
+        <p>Stormyra, 8008 Bodø</p>
+        <a href="tel:93470100">934 70 100</a>
+        <a href="mailto:post@blomsterpian.no">post@blomsterpian.no</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Blomsterpian AS · Org.nr. 995 165 066</span>
+      <span>City Nord · Bodø</span>
+    </div>
+  </footer>
+
+  <!-- DEMO BADGE (kun i demo-versjon) -->
+  <a href="#" class="demo-badge">Demo-side av Nyansikt</a>
+
+</body>
+</html>

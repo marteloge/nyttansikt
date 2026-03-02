@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapport for Blomsterpian – Nyansikt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #1E3A2F;
+      --rose:   #C8896A;
+      --cream:  #F7F2EA;
+      --red:    #D94F4F;
+      --amber:  #D97D2A;
+      --ok:     #3A7A5C;
+      --text:   #1A1A1A;
+      --muted:  #6B7280;
+      --border: #E5E0D8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #FAFAF8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─────────────────────────────── */
+    header {
+      background: var(--green);
+      padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .header-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: white;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+    }
+
+    .header-tagline {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ─── HERO BAR ───────────────────────────── */
+    .report-hero {
+      background: var(--cream);
+      padding: 3rem 3rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .report-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 0.75rem;
+    }
+
+    .report-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 300;
+      color: var(--green); line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .report-meta {
+      font-size: 0.83rem; color: var(--muted);
+      display: flex; gap: 1.5rem;
+    }
+
+    /* ─── MAIN ───────────────────────────────── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem;
+    }
+
+    /* ─── VERDICT BOX ────────────────────────── */
+    .verdict {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .verdict-score {
+      text-align: center;
+    }
+
+    .score-circle {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: var(--rose);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: white; margin-bottom: 0.5rem;
+    }
+
+    .score-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; line-height: 1;
+    }
+
+    .score-max { font-size: 0.7rem; opacity: 0.7; }
+
+    .score-label {
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--rose); letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .verdict-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--green); margin-bottom: 0.75rem;
+    }
+
+    .verdict-text p {
+      font-size: 0.95rem; line-height: 1.7;
+      color: var(--muted); font-weight: 300;
+    }
+
+    /* ─── SECTION HEADS ──────────────────────── */
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 400;
+      color: var(--green); margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-block { margin-bottom: 3rem; }
+
+    /* ─── ISSUES ─────────────────────────────── */
+    .issues { display: flex; flex-direction: column; gap: 1rem; }
+
+    .issue {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 4px 4px 0;
+      padding: 1.5rem 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .issue.warning { border-left-color: var(--amber); }
+
+    .issue-icon {
+      font-size: 1.2rem; margin-top: 0.1rem;
+    }
+
+    .issue-title {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.4rem;
+    }
+
+    .issue-desc {
+      font-size: 0.87rem; color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .issue-badge {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 12px;
+      background: #FEE2E2;
+      color: var(--red);
+      white-space: nowrap;
+    }
+
+    .issue.warning .issue-badge {
+      background: #FEF3C7;
+      color: var(--amber);
+    }
+
+    /* ─── REVENUE ────────────────────────────── */
+    .revenue-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+
+    .rev-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .rev-card.highlight {
+      background: var(--green);
+      border-color: var(--green);
+    }
+
+    .rev-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300;
+      color: var(--green); line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .rev-card.highlight .rev-num { color: white; }
+
+    .rev-label {
+      font-size: 0.78rem; color: var(--muted);
+      font-weight: 400;
+    }
+
+    .rev-card.highlight .rev-label { color: rgba(255,255,255,0.65); }
+
+    .revenue-note {
+      font-size: 0.8rem; color: var(--muted);
+      line-height: 1.6;
+      padding: 1rem 1.25rem;
+      background: var(--cream);
+      border-radius: 4px;
+    }
+
+    /* ─── DEMO CTA ───────────────────────────── */
+    .demo-cta {
+      background: var(--green);
+      border-radius: 4px;
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .demo-cta h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: white; margin-bottom: 0.5rem;
+    }
+
+    .demo-cta p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.65);
+      line-height: 1.6; font-weight: 300;
+    }
+
+    .demo-url {
+      font-size: 0.8rem; color: rgba(255,255,255,0.45);
+      margin-top: 0.75rem; font-family: monospace;
+    }
+
+    .btn-demo {
+      display: inline-block;
+      background: var(--rose);
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .btn-demo:hover { background: #b8795a; }
+
+    /* ─── WHAT YOU GET ───────────────────────── */
+    .deliverables {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .deliverable {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+
+    .del-check {
+      color: var(--ok); font-size: 1rem;
+      margin-top: 0.1rem; flex-shrink: 0;
+    }
+
+    .del-title {
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.25rem;
+    }
+
+    .del-desc {
+      font-size: 0.82rem; color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── NEXT STEP ──────────────────────────── */
+    .next-step {
+      background: var(--cream);
+      border-radius: 4px; padding: 2rem 2.5rem;
+      text-align: center; margin-bottom: 2rem;
+    }
+
+    .next-step p {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1.5rem;
+    }
+
+    .next-step .contact {
+      font-size: 0.85rem; color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--green);
+      padding: 1.5rem 3rem;
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-logo">Nyansikt</div>
+    <div class="header-tagline">Vi bygger før vi pitcher</div>
+  </header>
+
+  <div class="report-hero">
+    <p class="report-label">Nettside-analyse · Konfidensiell</p>
+    <h1 class="report-title">Blomsterpian, Bodø<br>— her er hva nettsiden koster dere</h1>
+    <div class="report-meta">
+      <span>📅 Analysert: mars 2026</span>
+      <span>🌐 blomsterpian.no</span>
+      <span>📍 City Nord, Bodø</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- VERDICT -->
+    <div class="verdict">
+      <div class="verdict-score">
+        <div class="score-circle">
+          <span class="score-num">42</span>
+          <span class="score-max">/100</span>
+        </div>
+        <div class="score-label">Konverteringsscore</div>
+      </div>
+      <div class="verdict-text">
+        <h3>Nettsiden er ikke bygget for å selge</h3>
+        <p>
+          Blomsterpian har et godt produkt og solid erfaring. Men nettsiden kommuniserer det ikke. Basert på vår analyse er konverteringsraten sannsynligvis under 1.5 % — det vil si at mer enn 98 av 100 besøkende forlater siden uten å bestille. Moderne blomsterbutikker med god UX konverterer 3–5 %. Vi har bygd en demo som viser hva det konkret betyr for omsetningen.
+        </p>
+      </div>
+    </div>
+
+    <!-- ISSUES -->
+    <div class="section-block">
+      <h2>Hva hindrer salg i dag</h2>
+      <div class="issues">
+
+        <div class="issue">
+          <div class="issue-icon">🖼️</div>
+          <div>
+            <div class="issue-title">Ingen visuell identitet — kun Interfloras generiske uttrykk</div>
+            <div class="issue-desc">Besøkende ser ikke hvem dere er, hva som er unikt med Blomsterpian, eller hvorfor de skal velge dere fremfor å bestille direkte fra interflora.no. Uten en sterk visuell "følelse" forlater de siden uten å konvertere.</div>
+          </div>
+          <div class="issue-badge">Høy prioritet</div>
+        </div>
+
+        <div class="issue">
+          <div class="issue-icon">📱</div>
+          <div>
+            <div class="issue-title">Mobilopplevelsen er fra 2015</div>
+            <div class="issue-desc">Mer enn 70 % av trafikken til lokale bedrifter kommer nå fra mobil. Navigasjonen, bildene og CTA-ene på blomsterpian.no er ikke optimalisert for touchscreen — noe som direkte reduserer antall bestillinger.</div>
+          </div>
+          <div class="issue-badge">Høy prioritet</div>
+        </div>
+
+        <div class="issue warning">
+          <div class="issue-icon">🎯</div>
+          <div>
+            <div class="issue-title">Ingen tydelig CTA "above the fold"</div>
+            <div class="issue-desc">Den første skjermen gir ikke brukeren én klar handling å gjøre. "BESTILL HER" er begravd i menyen. En klar, synlig knapp øverst kan alene øke konverteringen med 20–40 %.</div>
+          </div>
+          <div class="issue-badge">Middels</div>
+        </div>
+
+        <div class="issue warning">
+          <div class="issue-icon">❤️</div>
+          <div>
+            <div class="issue-title">Ingen "om oss"-seksjon — ingen tillit</div>
+            <div class="issue-desc">Folk kjøper blomster til viktige anledninger. De vil vite hvem som lager dem. En kort, ekte presentasjon av teamet og historien øker tilliten og reduserer frafall dramatisk — spesifikt for bestillinger over 500 kr.</div>
+          </div>
+          <div class="issue-badge">Middels</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- REVENUE IMPACT -->
+    <div class="section-block">
+      <h2>Hva dette koster dere i tapt omsetning</h2>
+      <div class="revenue-grid">
+        <div class="rev-card">
+          <div class="rev-num">~300</div>
+          <div class="rev-label">Månedlige besøkende (estimert)</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-num">1.5 %</div>
+          <div class="rev-label">Nåværende konverteringsrate (estimat)</div>
+        </div>
+        <div class="rev-card">
+          <div class="rev-num">4–5</div>
+          <div class="rev-label">Nettbestillinger per måned i dag</div>
+        </div>
+      </div>
+      <div class="revenue-grid" style="margin-top: 0;">
+        <div class="rev-card" style="border-color: var(--ok);">
+          <div class="rev-num" style="color: var(--ok);">4 %</div>
+          <div class="rev-label">Ny konverteringsrate med ny side</div>
+        </div>
+        <div class="rev-card" style="border-color: var(--ok);">
+          <div class="rev-num" style="color: var(--ok);">12</div>
+          <div class="rev-label">Estimerte bestillinger per måned</div>
+        </div>
+        <div class="rev-card highlight">
+          <div class="rev-num">+5 000 kr</div>
+          <div class="rev-label">Ekstra omsetning per måned</div>
+        </div>
+      </div>
+      <div class="revenue-note">
+        ⚠️ Estimatene er basert på bransjesnitt for norske blomsterbutikker og typisk CRO-forbedring ved nettside-redesign. Faktisk effekt avhenger av trafikk og sesong. Gjennomsnittlig ordresum: 600 kr.
+      </div>
+    </div>
+
+    <!-- DEMO CTA -->
+    <div class="demo-cta">
+      <div>
+        <h3>Vi har allerede bygd den nye nettsiden</h3>
+        <p>Ikke et mockup. Ikke en wireframe. En live, klikkerbar demo tilpasset Blomsterpian — klar til å se akkurat nå.</p>
+        <div class="demo-url">nyansikt.no/demo/blomsterpian</div>
+      </div>
+      <a href="#" class="btn-demo">Se demo →</a>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="section-block">
+      <h2>Hva dere får med Nyansikt</h2>
+      <div class="deliverables">
+        <div class="deliverable">
+          <div class="del-check">✓</div>
+          <div>
+            <div class="del-title">Ny landingsside — designet for konvertering</div>
+            <div class="del-desc">Mobiloptimalisert, rask, med tydelige CTA-er og visuell identitet tilpasset Blomsterpian.</div>
+          </div>
+        </div>
+        <div class="deliverable">
+          <div class="del-check">✓</div>
+          <div>
+            <div class="del-title">Fotografi-regi og innholdstips</div>
+            <div class="del-desc">Vi forteller dere nøyaktig hva slags bilder som konverterer — og hva som ikke gjør det.</div>
+          </div>
+        </div>
+        <div class="deliverable">
+          <div class="del-check">✓</div>
+          <div>
+            <div class="del-title">Teknisk hygiene inkludert</div>
+            <div class="del-desc">Siden leveres optimalisert for Google og AI-søk (AEO). Dere trenger ikke tenke på det.</div>
+          </div>
+        </div>
+        <div class="deliverable">
+          <div class="del-check">✓</div>
+          <div>
+            <div class="del-title">Ferdig på 2 uker</div>
+            <div class="del-desc">Ingen lange prosjekter. Vi leverer raskt og setter dere i drift så fort som mulig.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT STEP -->
+    <div class="next-step">
+      <p>
+        <strong>Ingen forpliktelse. Ingen salgspress.</strong><br>
+        Se demoen, test den på mobilen din, vis den til teamet. Deretter tar vi gjerne en 20-minutters prat om hva det vil koste å gå videre.
+      </p>
+      <a href="#" class="btn-demo" style="background: var(--green);">Se live demo av din nye nettside →</a>
+      <p class="contact">
+        Spørsmål? Send e-post til <strong>hei@nyansikt.no</strong> eller ring <strong>+47 xxx xx xxx</strong>
+      </p>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>Nyansikt · hei@nyansikt.no</span>
+    <span>Denne rapporten er utarbeidet for Blomsterpian AS og er konfidensiell.</span>
+  </footer>
+
+</body>
+</html>

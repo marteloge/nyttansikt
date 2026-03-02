@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>69 Grader Rør – Rørleggere i Kåfjord og Nord-Troms</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,600;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:   #0B1825;
+      --dark2:  #122030;
+      --aurora: #2DD4BF;
+      --fire:   #E07A2F;
+      --ice:    #C8DDE8;
+      --muted:  #7A9BB0;
+      --white:  #F0F4F7;
+      --text:   #E8EFF4;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--dark); -webkit-font-smoothing: antialiased; }
+
+    /* ─── NAV ────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(11, 24, 37, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo { text-decoration: none; }
+
+    .nav-logo-main {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.01em;
+    }
+
+    .nav-logo-main span { color: var(--aurora); }
+
+    .nav-logo-sub {
+      font-size: 0.65rem; color: var(--muted);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      display: block; margin-top: 0.1rem;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-call {
+      background: var(--fire); color: white !important;
+      padding: 0.5rem 1.25rem; border-radius: 3px;
+      font-weight: 600 !important; font-size: 0.85rem !important;
+    }
+
+    /* ─── HERO ───────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85&auto=format&fit=crop');
+      background-size: cover; background-position: center 40%;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        100deg,
+        rgba(11, 24, 37, 0.95) 0%,
+        rgba(11, 24, 37, 0.75) 55%,
+        rgba(11, 24, 37, 0.2) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 8rem 3rem 6rem;
+      max-width: 700px;
+    }
+
+    .hero-lat {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .lat-badge {
+      background: var(--aurora);
+      color: var(--dark);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.75rem; border-radius: 12px;
+    }
+
+    .lat-text {
+      font-size: 0.75rem; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 200; line-height: 1.1;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+
+    .hero-title strong {
+      font-weight: 700;
+      display: block; color: var(--aurora);
+    }
+
+    .hero-body {
+      font-size: 1.05rem; line-height: 1.75;
+      color: rgba(240,244,247,0.65);
+      font-weight: 300; margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; }
+
+    .btn-fire {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--fire); color: white;
+      padding: 0.9rem 1.75rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-fire:hover { background: #c86e28; transform: translateY(-1px); }
+
+    .btn-border {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1.5px solid rgba(255,255,255,0.2); color: var(--white);
+      padding: 0.9rem 1.5rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn-border:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 3rem;
+      z-index: 2; font-size: 0.72rem; color: var(--muted);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-scroll-hint::after {
+      content: ''; display: block; width: 2.5rem; height: 1px;
+      background: var(--muted);
+    }
+
+    /* ─── SHARED ─────────────────────────────── */
+    section { padding: 7rem 3rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .label {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--aurora); margin-bottom: 1rem;
+    }
+
+    .title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--white); margin-bottom: 1.25rem;
+    }
+
+    .body-text {
+      font-size: 1rem; line-height: 1.78;
+      color: var(--muted); font-weight: 300;
+    }
+
+    /* ─── SERVICES ───────────────────────────── */
+    .services { background: var(--dark2); }
+
+    .services-head {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: end; margin-bottom: 4rem;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.06);
+    }
+
+    .srv {
+      padding: 2.5rem;
+      background: var(--dark2);
+      transition: background 0.2s;
+    }
+
+    .srv:hover { background: var(--dark); }
+
+    .srv-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem; font-weight: 700;
+      color: rgba(255,255,255,0.07);
+      line-height: 1; margin-bottom: 0.75rem;
+    }
+
+    .srv-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+    .srv-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 300;
+      color: var(--white); margin-bottom: 0.75rem;
+    }
+
+    .srv-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+    /* ─── ABOUT ──────────────────────────────── */
+    .about { background: var(--dark); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 6rem; align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+
+    .about-img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; border-radius: 3px;
+      filter: brightness(0.9);
+    }
+
+    .about-coord {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--aurora);
+      color: var(--dark);
+      padding: 1.25rem 1.5rem;
+      border-radius: 3px;
+    }
+
+    .coord-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem; font-weight: 700; line-height: 1;
+    }
+
+    .coord-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
+
+    .about-text { }
+
+    .about-pull {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem; font-style: italic; font-weight: 300;
+      color: var(--ice); line-height: 1.4;
+      margin: 2rem 0; padding-left: 1.5rem;
+      border-left: 2px solid var(--aurora);
+    }
+
+    /* ─── NUMBERS ────────────────────────────── */
+    .numbers {
+      background: var(--aurora);
+      padding: 5rem 3rem;
+    }
+
+    .numbers-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2rem; text-align: center;
+    }
+
+    .num-val {
+      font-family: 'Fraunces', serif;
+      font-size: 3.5rem; font-weight: 700;
+      color: var(--dark); line-height: 1;
+    }
+
+    .num-label { font-size: 0.88rem; color: rgba(11,24,37,0.65); font-weight: 500; margin-top: 0.4rem; }
+
+    /* ─── CONTACT ────────────────────────────── */
+    .contact { background: var(--dark2); }
+
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+
+    .citem {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .citem:hover { background: rgba(255,255,255,0.08); }
+    .citem-icon { font-size: 1.2rem; margin-top: 0.1rem; }
+    .citem-label { font-size: 0.68rem; color: var(--aurora); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; }
+    .citem-val { font-size: 1rem; color: var(--white); font-weight: 500; margin-top: 0.15rem; }
+
+    .contact-form { }
+
+    .form-group { margin-bottom: 1.25rem; }
+
+    .form-label {
+      display: block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); padding: 0.85rem 1rem;
+      border-radius: 3px; font-size: 0.95rem;
+      font-family: inherit; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--aurora); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: #060F18;
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+    footer a { color: var(--aurora); text-decoration: none; font-size: 0.8rem; }
+
+    /* ─── DEMO BADGE ─────────────────────────── */
+    .demo-badge {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      background: var(--fire); color: white;
+      padding: 0.7rem 1.25rem; border-radius: 24px;
+      font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-content { padding: 7rem 1.5rem 4rem; max-width: 100%; }
+      .services-head { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-coord { display: none; }
+      .numbers-grid { grid-template-columns: 1fr 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-main">69<span>°</span> Rør</div>
+      <div class="nav-logo-sub">Kåfjord · Nord-Troms</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tjenester">Tjenester</a></li>
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="tel:95482950" class="nav-call">📞 954 82 950</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-lat">
+        <span class="lat-badge">69° N</span>
+        <span class="lat-text">Olderdalen · Kåfjord · Troms</span>
+      </div>
+      <h1 class="hero-title">
+        Rørleggere<br>der andre<br>
+        <strong>ikke tør</strong>
+      </h1>
+      <p class="hero-body">
+        På 69. breddegrad, omgitt av Lyngenfjorden og Nordkalottens fjell, har vi bygget et rørleggerteam som kjenner Nord-Norges utfordringer innenfra. Frost, terreng, avstand — vi takler det.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:95482950" class="btn-fire">📞 Ring oss nå</a>
+        <a href="#tjenester" class="btn-border">Se tjenester</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">Scroll</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="tjenester">
+    <div class="section-inner">
+      <div class="services-head">
+        <div>
+          <p class="label">Hva vi gjør</p>
+          <h2 class="title">Fra Kåfjord<br>til hele Nord-Troms</h2>
+        </div>
+        <p class="body-text">Vi er rørleggerne som tar jobbene — store og små, enkle og krevende. Med lokalkunnskap fra Olderdalen og erfaring fra 8 fagfolk betyr avstand ingenting for oss.</p>
+      </div>
+      <div class="services-grid">
+        <div class="srv">
+          <div class="srv-num">01</div>
+          <div class="srv-icon">🚿</div>
+          <div class="srv-name">Bad & sanitær</div>
+          <div class="srv-desc">Totalrenovering eller deloppgradering av bad og våtrom. Vi prosjekterer, leverer og monterer.</div>
+        </div>
+        <div class="srv">
+          <div class="srv-num">02</div>
+          <div class="srv-icon">🔧</div>
+          <div class="srv-name">Vann & avløp</div>
+          <div class="srv-desc">Legging, reparasjon og fornying av vann- og avløpssystemer. Vi fikser lekkasjer raskt.</div>
+        </div>
+        <div class="srv">
+          <div class="srv-num">03</div>
+          <div class="srv-icon">🌡️</div>
+          <div class="srv-name">Gulvvarme & varmepumpe</div>
+          <div class="srv-desc">Energieffektive varmeløsninger tilpasset Nord-Norges klima. Vannbåren gulvvarme og luft/vann-pumper.</div>
+        </div>
+        <div class="srv">
+          <div class="srv-num">04</div>
+          <div class="srv-icon">🏗️</div>
+          <div class="srv-name">Nybygg</div>
+          <div class="srv-desc">Komplett VVS-prosjektering og installasjon for enebolig, hytte eller næringsbygg fra A til Å.</div>
+        </div>
+        <div class="srv">
+          <div class="srv-num">05</div>
+          <div class="srv-icon">⚡</div>
+          <div class="srv-name">Akuttvakten</div>
+          <div class="srv-desc">Rørbrudd, oversvømmelse eller stopp i avløpet? Vi er tilgjengelige — selv midt i polarnatta.</div>
+        </div>
+        <div class="srv">
+          <div class="srv-num">06</div>
+          <div class="srv-icon">🧊</div>
+          <div class="srv-name">Frostskadeprogram</div>
+          <div class="srv-desc">Frostbeskyttelse, isolering av utsatte rørstrekk og forebygging av vannskader. Spesialister på nordlige forhold.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="om-oss">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img
+            class="about-img"
+            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80&auto=format&fit=crop"
+            alt="Rørlegger fra 69 Grader Rør i arbeid"
+            loading="lazy"
+          />
+          <div class="about-coord">
+            <div class="coord-num">69°</div>
+            <div class="coord-label">Breddegrad nord</div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="label">Hvem vi er</p>
+          <h2 class="title">Stiftet i 2023.<br>Rotfestet siden alltid.</h2>
+          <p class="body-text">
+            69 Grader Rør AS ble stiftet av folk som vokste opp i Kåfjord og kjenner hvert hjørne av dette landskapet. Vi er lei av at Nord-Norske kunder må vente uker på håndverkere utenfra — vi er her allerede.
+          </p>
+          <p class="about-pull">"Vi bygde selskapet fordi vi visste at Kåfjord trenger sine egne fagfolk."</p>
+          <p class="body-text">
+            Med 8 ansatte og et nettverk av lokale leverandører kan vi levere raskt, effektivt og til riktig pris — uten at du betaler for reisetid fra Tromsø.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <div class="numbers">
+    <div class="numbers-grid">
+      <div>
+        <div class="num-val">8</div>
+        <div class="num-label">Fagfolk i teamet</div>
+      </div>
+      <div>
+        <div class="num-val">24/7</div>
+        <div class="num-label">Tilgjengelig</div>
+      </div>
+      <div>
+        <div class="num-val">100+</div>
+        <div class="num-label">Jobber i 2024</div>
+      </div>
+      <div>
+        <div class="num-val">0</div>
+        <div class="num-label">Nødvendig reisetid utenfra</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="section-inner">
+      <div class="contact-wrap">
+        <div>
+          <p class="label">Kontakt oss</p>
+          <h2 class="title">La oss ta<br>jobben din</h2>
+          <p class="body-text">Ring oss, send epost, eller beskriv jobben i skjemaet. Vi svarer innen samme dag.</p>
+          <div class="contact-items">
+            <a href="tel:95482950" class="citem">
+              <span class="citem-icon">📞</span>
+              <div><div class="citem-label">Telefon</div><div class="citem-val">954 82 950</div></div>
+            </a>
+            <a href="tel:41106552" class="citem">
+              <span class="citem-icon">📱</span>
+              <div><div class="citem-label">Mobil</div><div class="citem-val">411 06 552</div></div>
+            </a>
+            <a href="mailto:post@69graderror.no" class="citem">
+              <span class="citem-icon">✉️</span>
+              <div><div class="citem-label">E-post</div><div class="citem-val">post@69graderror.no</div></div>
+            </a>
+            <div class="citem">
+              <span class="citem-icon">📍</span>
+              <div><div class="citem-label">Adresse</div><div class="citem-val">Olderdalsveien 567, 9146 Olderdalen</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Ditt navn</label>
+            <input type="text" class="form-input" placeholder="Ola Nordmann" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Telefon</label>
+            <input type="tel" class="form-input" placeholder="900 00 000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Beskriv oppdraget</label>
+            <textarea class="form-textarea" placeholder="F.eks: lekkasje under kjøkkenvasken, ny varmepumpe, totalrenovering av bad..."></textarea>
+          </div>
+          <button type="submit" class="btn-fire" style="width:100%;justify-content:center;border:none;cursor:pointer;font-size:0.95rem;">
+            Send forespørsel →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 69 Grader Rør AS · Org.nr. 931 689 533 · Olderdalen, Kåfjord</p>
+    <a href="#">↑ Til toppen</a>
+  </footer>
+
+  <a href="#" class="demo-badge">✦ Demo av Nyansikt</a>
+
+</body>
+</html>

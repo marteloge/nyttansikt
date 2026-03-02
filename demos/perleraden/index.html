@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perleraden Tannlegesenter – Din tannlege i Jørpeland</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #1B2D42;
+      --teal:  #2FA8A0;
+      --teal2: #3DC9BF;
+      --cream: #F9F5F0;
+      --muted: #637381;
+      --border:#E8E2D9;
+      --white: #FFFFFF;
+      --text:  #1A1A1A;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+    /* ─── NAV ────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(27, 45, 66, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-brand { text-decoration: none; display: flex; align-items: center; gap: 0.8rem; }
+
+    .nav-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem; color: var(--white); line-height: 1.1;
+    }
+
+    .nav-sub { font-size: 0.65rem; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+    .nav-links a:hover { color: white; }
+
+    .nav-book {
+      background: var(--teal); color: white !important;
+      padding: 0.55rem 1.3rem; border-radius: 3px;
+      font-weight: 600 !important; font-size: 0.85rem !important;
+    }
+
+    /* ─── HERO ───────────────────────────────── */
+    .hero {
+      min-height: 100vh; display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: 4rem;
+    }
+
+    .hero-left {
+      background: var(--navy);
+      padding: 8rem 4rem 8rem 3rem;
+      display: flex; flex-direction: column; justify-content: center;
+      height: 100%;
+    }
+
+    .hero-since {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal2); margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+
+    .hero-title em { font-style: italic; color: var(--teal2); }
+
+    .hero-sub {
+      font-size: 1rem; line-height: 1.75; font-weight: 300;
+      color: rgba(255,255,255,0.7); margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .btn-teal {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--teal); color: white;
+      padding: 0.9rem 1.75rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-teal:hover { background: #28948C; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: white; padding: 0.9rem 1.5rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 400;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+
+    .hero-trust {
+      display: flex; gap: 2rem; margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .trust-item { }
+    .trust-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem; color: var(--teal2); line-height: 1;
+    }
+    .trust-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+    .hero-right {
+      height: 100%; min-height: 100vh;
+      background-image: url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&q=80&auto=format&fit=crop');
+      background-size: cover; background-position: center;
+    }
+
+    /* ─── SHARED ─────────────────────────────── */
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400; line-height: 1.2; color: var(--navy);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-body {
+      font-size: 1rem; line-height: 1.78; color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ─── SERVICES ───────────────────────────── */
+    .services { background: var(--cream); }
+
+    .services-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: end; margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white); border-radius: 4px;
+      padding: 2rem 1.75rem;
+      border-top: 3px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      border-top-color: var(--teal);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .service-emoji { font-size: 1.8rem; margin-bottom: 1rem; }
+
+    .service-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .service-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── WHY US ─────────────────────────────── */
+    .why { background: var(--white); }
+
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+
+    .why-img {
+      border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .why-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .why-points { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+
+    .why-point {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.25rem; border-radius: 4px;
+      background: var(--cream);
+    }
+
+    .why-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .why-point-title { font-weight: 600; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .why-point-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── TEAM ───────────────────────────────── */
+    .team { background: var(--navy); }
+    .team .section-title { color: white; }
+    .team .section-label { color: var(--teal2); }
+
+    .team-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+
+    .team-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .team-img {
+      aspect-ratio: 1; overflow: hidden;
+    }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(20%); }
+
+    .team-info { padding: 1.25rem; }
+    .team-name { font-size: 0.95rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.78rem; color: var(--teal2); font-weight: 500; }
+
+    /* ─── BOOK ───────────────────────────────── */
+    .book { background: var(--teal); }
+
+    .book-inner {
+      text-align: center; max-width: 640px; margin: 0 auto;
+    }
+
+    .book .section-title { color: white; }
+    .book .section-label { color: rgba(255,255,255,0.7); }
+
+    .book .section-body { color: rgba(255,255,255,0.8); margin: 0 auto 2.5rem; max-width: 480px; }
+
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: white; color: var(--teal);
+      padding: 1rem 2.25rem; border-radius: 3px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+    /* ─── CONTACT ────────────────────────────── */
+    .contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    }
+
+    .contact-map {
+      border-radius: 4px; overflow: hidden;
+      background: var(--border);
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--muted);
+    }
+
+    .contact-details { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+
+    .cdet {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem; background: white; border-radius: 4px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+    }
+
+    .cdet-icon { font-size: 1.1rem; margin-top: 0.1rem; }
+    .cdet-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .cdet-val { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-top: 0.15rem; }
+
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: var(--navy); padding: 2rem 3rem;
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem; color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── DEMO BADGE ─────────────────────────── */
+    .demo-badge {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      background: var(--teal); color: white;
+      padding: 0.7rem 1.25rem; border-radius: 24px;
+      font-size: 0.8rem; font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 1.5rem 4rem; min-height: 100vh; }
+      .hero-right { display: none; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .services-header { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-img { display: none; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-brand">
+      <div class="nav-icon">🦷</div>
+      <div>
+        <div class="nav-name">Perleraden</div>
+        <div class="nav-sub">Tannlegesenter · Jørpeland</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tjenester">Tjenester</a></li>
+      <li><a href="#om-oss">Om oss</a></li>
+      <li><a href="#team">Vårt team</a></li>
+      <li><a href="#time" class="nav-book">Book time</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <span class="hero-since">Jørpeland · Strand · Siden 2005</span>
+      <h1 class="hero-title">
+        Et smil du er<br>
+        <em>stolt av å vise</em>
+      </h1>
+      <p class="hero-sub">
+        Perleraden Tannlegesenter er din lokale tannlege i Jørpeland. Vi kombinerer erfaring og moderne teknologi med et varmt og uformelt miljø for hele familien.
+      </p>
+      <div class="hero-actions">
+        <a href="#time" class="btn-teal">📅 Book time</a>
+        <a href="tel:51740000" class="btn-ghost">📞 Ring oss</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item">
+          <div class="trust-num">20+</div>
+          <div class="trust-label">År i Jørpeland</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">10</div>
+          <div class="trust-label">Spesialister</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-num">4 000+</div>
+          <div class="trust-label">Fornøyde pasienter</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right"></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="tjenester">
+    <div class="section-inner">
+      <div class="services-header">
+        <div>
+          <p class="section-label">Våre tjenester</p>
+          <h2 class="section-title">Alt du trenger<br>under ett tak</h2>
+        </div>
+        <p class="section-body">Fra rutinemessig undersøkelse til avansert behandling — vi har kompetansen og utstyret til å ta vare på hele familien.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-emoji">🔍</div>
+          <div class="service-name">Undersøkelse & røntgen</div>
+          <div class="service-desc">Grundig undersøkelse med digitalt røntgen. Vi kartlegger helsen din og lager en plan for videre behandling.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-emoji">✨</div>
+          <div class="service-name">Tannbleking</div>
+          <div class="service-desc">Trygg og effektiv hjemmebleking med profesjonelle skinner og gel. Resultater du kan se allerede etter én uke.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-emoji">🛡️</div>
+          <div class="service-name">Fyllinger & krone</div>
+          <div class="service-desc">Tannfarget komposittfylling og helkeramiske kroner som ser naturlige ut og varer lenge.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-emoji">👶</div>
+          <div class="service-name">Barn & ungdom</div>
+          <div class="service-desc">Vi skaper gode tannlegeopplevelser fra tidlig alder. Rolig, hyggelig og tilpasset de minste.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-emoji">🦿</div>
+          <div class="service-name">Tannimplantat</div>
+          <div class="service-desc">Permanent løsning for manglende tenner. Implantater som sitter fast og kjennes naturlige.</div>
+        </div>
+        <div class="service-card">
+          <div class="service-emoji">😬</div>
+          <div class="service-name">Tannregulering</div>
+          <div class="service-desc">Moderne regulering med tynne skinner (aligners) eller tradisjonelle brackets — for barn og voksne.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="om-oss">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div class="why-img">
+          <img
+            src="https://images.unsplash.com/photo-1588776814546-1ffbb172d936?w=700&q=80&auto=format&fit=crop"
+            alt="Tannlege hos Perleraden"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <p class="section-label">Hvorfor velge oss</p>
+          <h2 class="section-title">20 år med tillit<br>i Jørpeland</h2>
+          <p class="section-body">
+            Siden 2005 har Perleraden vært en del av Jørpeland-samfunnet. Vi kjenner familien din, vi husker historikken din, og vi er her for deg år etter år — ikke bare for én behandling.
+          </p>
+          <div class="why-points">
+            <div class="why-point">
+              <div class="why-icon">⏱️</div>
+              <div>
+                <div class="why-point-title">Kort ventetid</div>
+                <div class="why-point-desc">Vi respekterer din tid. De fleste akutte henvendelser behandles samme dag eller innen 24 timer.</div>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-icon">🔬</div>
+              <div>
+                <div class="why-point-title">Moderne utstyr</div>
+                <div class="why-point-desc">Digitalt røntgen, 3D-skanning og tannfarget fyllmasse. Vi investerer kontinuerlig i det beste utstyret.</div>
+              </div>
+            </div>
+            <div class="why-point">
+              <div class="why-icon">💬</div>
+              <div>
+                <div class="why-point-title">Tydelig kommunikasjon</div>
+                <div class="why-point-desc">Du vet alltid hva som skjer, hva det koster og hvorfor. Ingen overraskelser på regningen.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="section-inner">
+      <p class="section-label">Teamet vårt</p>
+      <h2 class="section-title">Møt tannlegene<br>dine</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80&auto=format&fit=crop&crop=face" alt="Tannlege 1" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Dr. Lena Martinsen</div>
+            <div class="team-role">Spesialist, implantater</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80&auto=format&fit=crop&crop=face" alt="Tannlege 2" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Dr. Knut Hauge</div>
+            <div class="team-role">Daglig leder</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80&auto=format&fit=crop&crop=face" alt="Tannpleier" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Silje Andersen</div>
+            <div class="team-role">Tannpleier</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80&auto=format&fit=crop&crop=face" alt="Tannlege 3" loading="lazy" />
+          </div>
+          <div class="team-info">
+            <div class="team-name">Dr. Maria Santos</div>
+            <div class="team-role">Tannregulering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section class="book" id="time">
+    <div class="section-inner">
+      <div class="book-inner">
+        <p class="section-label">Book time</p>
+        <h2 class="section-title" style="color:white;">Klar for et bedre smil?</h2>
+        <p class="section-body">
+          Book time direkte online, ring oss, eller send en melding. Vi svarer alltid raskt og finner en time som passer for deg.
+        </p>
+        <a href="#kontakt" class="btn-white">📅 Book time nå</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label">Finn oss</p>
+          <h2 class="section-title">Sentralt i<br>Jørpeland sentrum</h2>
+          <p class="section-body">Vi holder til i Rådhusgaten 18, rett i sentrum av Jørpeland. Gratis parkering rett utenfor.</p>
+          <div class="contact-details">
+            <a href="tel:51740000" class="cdet">
+              <span class="cdet-icon">📞</span>
+              <div><div class="cdet-label">Telefon</div><div class="cdet-val">51 74 00 00</div></div>
+            </a>
+            <a href="mailto:post@perleraden.no" class="cdet">
+              <span class="cdet-icon">✉️</span>
+              <div><div class="cdet-label">E-post</div><div class="cdet-val">post@perleraden.no</div></div>
+            </a>
+            <div class="cdet">
+              <span class="cdet-icon">🕐</span>
+              <div><div class="cdet-label">Åpningstider</div><div class="cdet-val">Man–fre: 08:00–16:00</div></div>
+            </div>
+            <div class="cdet">
+              <span class="cdet-icon">📍</span>
+              <div><div class="cdet-label">Adresse</div><div class="cdet-val">Rådhusgaten 18, 4100 Jørpeland</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-map">🗺️</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Perleraden Tannlegesenter AS · Org.nr. 989 149 210</span>
+    <span>Rådhusgaten 18, 4100 Jørpeland</span>
+  </footer>
+
+  <a href="#" class="demo-badge">✦ Demo av Nyansikt</a>
+
+</body>
+</html>
