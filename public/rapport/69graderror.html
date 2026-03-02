@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapport for 69 Grader Ror AS – Nyansikt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark:   #0B1825; --dark2: #122030;
+      --aurora: #2DD4BF; --fire: #E07A2F;
+      --ice:    #C8DDE8; --muted: #7A9BB0;
+      --red:    #E05252; --green: #2DD4BF;
+      --border: #1E3040; --text: #E8EFF4;
+      --amber:  #E07A2F;
+    }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--dark); -webkit-font-smoothing: antialiased; }
+
+    header {
+      background: #060F18; padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'Fraunces', serif; font-size: 1.4rem; color: white; font-weight: 400; }
+    .logo-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; margin-top: 0.15rem; }
+
+    .report-hero {
+      background: var(--dark2); padding: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pill {
+      display: inline-block; background: var(--fire); color: white;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.3rem 0.8rem;
+      border-radius: 12px; margin-bottom: 1rem;
+    }
+    .report-title {
+      font-family: 'Fraunces', serif; font-size: 2.2rem;
+      font-weight: 300; color: var(--text); line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .report-title strong { color: var(--aurora); font-weight: 600; }
+    .report-meta { font-size: 0.83rem; color: var(--muted); display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    main { max-width: 820px; margin: 0 auto; padding: 3rem; }
+
+    /* FINDING BOX */
+    .finding {
+      background: rgba(224, 82, 82, 0.08);
+      border: 1px solid rgba(224, 82, 82, 0.2);
+      border-left: 4px solid var(--red);
+      border-radius: 0 4px 4px 0;
+      padding: 2rem 2.5rem; margin-bottom: 3rem;
+    }
+    .finding h3 { font-family: 'Fraunces', serif; font-size: 1.35rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
+    .finding p { font-size: 0.95rem; line-height: 1.72; color: var(--muted); font-weight: 300; }
+
+    h2 {
+      font-family: 'Fraunces', serif; font-size: 1.55rem;
+      font-weight: 400; color: var(--text); margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+    }
+    .block { margin-bottom: 3rem; }
+
+    /* DOMAIN BOX */
+    .domain-box {
+      background: rgba(45, 212, 191, 0.06);
+      border: 1px solid rgba(45, 212, 191, 0.15);
+      border-radius: 4px; padding: 2rem 2.5rem; margin-bottom: 3rem;
+    }
+    .domain-box h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 400; color: var(--aurora); margin-bottom: 0.75rem; }
+    .domain-box p { font-size: 0.9rem; line-height: 1.72; color: var(--muted); font-weight: 300; }
+    .domain-flow {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-top: 1.25rem; padding: 1rem 1.25rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 3px; font-family: monospace; font-size: 0.85rem;
+    }
+    .domain-flow .arrow { color: var(--fire); font-weight: 600; }
+    .domain-flow .url { color: var(--muted); }
+    .domain-flow .url.strike { text-decoration: line-through; opacity: 0.6; }
+    .domain-flow .bad { color: var(--red); font-weight: 500; }
+
+    /* ISSUES */
+    .issues { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+    .issue {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--red);
+      border-radius: 0 4px 4px 0;
+      padding: 1.5rem 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.25rem; align-items: start;
+    }
+    .issue.warning { border-left-color: var(--amber); }
+    .issue-icon { font-size: 1.2rem; margin-top: 0.1rem; }
+    .issue-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .issue-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
+    .issue-badge {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.3rem 0.75rem; border-radius: 12px;
+      background: rgba(224, 82, 82, 0.15); color: var(--red);
+      white-space: nowrap;
+    }
+    .issue.warning .issue-badge { background: rgba(224, 122, 47, 0.15); color: var(--amber); }
+
+    /* COST TABLE */
+    .cost-table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    .cost-table th { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0.75rem 1rem; background: var(--dark2); text-align: left; }
+    .cost-table td { padding: 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--border); color: var(--ice); }
+    .cost-table tr:last-child td { border-bottom: none; font-weight: 600; background: rgba(45, 212, 191, 0.06); }
+    .cost-table .red { color: var(--red); font-weight: 600; }
+    .cost-table .green { color: var(--green); font-weight: 600; }
+
+    /* REVENUE CARDS */
+    .rev-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .rev-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.5rem; text-align: center;
+    }
+    .rev-card.highlight { background: var(--aurora); border-color: var(--aurora); }
+    .rev-num {
+      font-family: 'Fraunces', serif; font-size: 2rem;
+      font-weight: 300; color: var(--aurora); line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .rev-card.highlight .rev-num { color: var(--dark); font-weight: 700; }
+    .rev-label { font-size: 0.78rem; color: var(--muted); }
+    .rev-card.highlight .rev-label { color: rgba(11, 24, 37, 0.65); }
+
+    /* DEMO CTA */
+    .demo-cta {
+      background: linear-gradient(135deg, #0F2030 0%, #183040 100%);
+      border: 1px solid rgba(45, 212, 191, 0.15);
+      border-radius: 6px; padding: 2.5rem 3rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 2rem; align-items: center;
+      margin-bottom: 3rem;
+    }
+    .demo-cta h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 300; color: white; margin-bottom: 0.5rem; }
+    .demo-cta p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    .demo-url { font-size: 0.78rem; color: rgba(255,255,255,0.3); margin-top: 0.75rem; font-family: monospace; }
+    .btn-cta {
+      background: var(--fire); color: white;
+      padding: 1rem 1.75rem; border-radius: 3px;
+      text-decoration: none; font-weight: 600;
+      font-size: 0.9rem; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .btn-cta:hover { background: #c86e28; }
+
+    /* DELIVERABLES */
+    .del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .del {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.25rem; display: flex; gap: 0.75rem;
+    }
+    .del-check { color: var(--aurora); font-size: 1rem; margin-top: 0.1rem; flex-shrink: 0; }
+    .del-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .del-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    /* NEXT STEP */
+    .next {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 2rem 2.5rem; text-align: center;
+    }
+    .next p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+    .next .small { font-size: 0.82rem; color: var(--muted); margin-top: 1rem; }
+
+    footer {
+      background: #060F18; padding: 1.5rem 3rem;
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: rgba(255,255,255,0.25);
+    }
+
+    .note {
+      font-size: 0.8rem; color: var(--muted); line-height: 1.6;
+      padding: 1rem 1.25rem; background: var(--dark2);
+      border-radius: 4px; border: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      main { padding: 2rem 1.5rem; }
+      .rev-row { grid-template-columns: 1fr; }
+      .del-grid { grid-template-columns: 1fr; }
+      .demo-cta { grid-template-columns: 1fr; }
+      .report-meta { flex-direction: column; gap: 0.5rem; }
+      .issue { grid-template-columns: auto 1fr; }
+      .issue-badge { grid-column: 2; }
+      header { padding: 2rem 1.5rem; }
+      .report-hero { padding: 2rem 1.5rem; }
+      .domain-flow { flex-wrap: wrap; font-size: 0.75rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">Nyansikt</div>
+    <div class="logo-sub">Vi bygger for vi pitcher</div>
+  </div>
+  <div style="font-size:0.8rem; color:rgba(255,255,255,0.3); text-align:right;">
+    Mars 2026<br>Konfidensiell
+  </div>
+</header>
+
+<div class="report-hero">
+  <div class="pill">Domene uten nettside</div>
+  <h1 class="report-title">69 Grader Ror AS, <strong>Kafjord</strong><br>— et genialt navn ingen far se</h1>
+  <div class="report-meta">
+    <span>Analysert: mars 2026</span>
+    <span>Org.nr. 931 689 533</span>
+    <span>Olderdalen, Kafjord, Troms</span>
+    <span>VVS / Rorlegger</span>
+  </div>
+</div>
+
+<main>
+
+  <div class="finding">
+    <h3>8 fagfolk, et uforglemmelig navn — og null digital synlighet</h3>
+    <p>
+      69 Grader Ror har alt som trengs for a dominere rorleggermarkedet i Nord-Troms: et minneverdig merkenavn, lokalt rotfeste og 8 erfarne fagfolk. Men nar potensielle kunder soker «rorlegger Kafjord», «VVS Nord-Troms» eller «rorlegger Olderdalen» pa Google, finner de ikke dere. De finner firmaer fra Tromso som tar betalt for 2 timer kjoring for de i det hele tatt starter jobben.
+    </p>
+  </div>
+
+  <div class="domain-box">
+    <h3>Dere eier 69graderror.no — men det jobber mot dere</h3>
+    <p>
+      Domenet er registrert, men det peker ikke til en nettside. I stedet redirectes besokende til en generisk handverkerkatalog der dere drukner blant hundrevis av andre firma. Det betyr at selv folk som aktivt soker etter dere ved navn, ender opp et annet sted.
+    </p>
+    <div class="domain-flow">
+      <span class="url">69graderror.no</span>
+      <span class="arrow">&rarr;</span>
+      <span class="bad">redirect til katalog</span>
+      <span class="arrow">&rarr;</span>
+      <span class="bad">kunden forsvinner</span>
+    </div>
+  </div>
+
+  <!-- ISSUES -->
+  <div class="block">
+    <h2>Hva som hindrer vekst i dag</h2>
+    <div class="issues">
+      <div class="issue">
+        <div class="issue-icon">&#128270;</div>
+        <div>
+          <div class="issue-title">Usynlig pa Google — null organisk trafikk</div>
+          <div class="issue-desc">Uten en nettside med innhold har Google ingenting a indeksere. Dere dukker ikke opp i lokale sok, Google Maps-resultater eller «rorlegger i naerheten»-sok. Alle disse kundene gar til konkurrentene.</div>
+        </div>
+        <div class="issue-badge">Kritisk</div>
+      </div>
+      <div class="issue">
+        <div class="issue-icon">&#128241;</div>
+        <div>
+          <div class="issue-title">Ingen mobilside — akuttkunder ringer andre</div>
+          <div class="issue-desc">Nar et ror sprekker kl. 22 soker folk pa mobilen. Uten en mobilside med tydelig telefonnummer og «ring na»-knapp, gar akuttjobbene til den forste rorleggeren som dukker opp.</div>
+        </div>
+        <div class="issue-badge">Kritisk</div>
+      </div>
+      <div class="issue warning">
+        <div class="issue-icon">&#127919;</div>
+        <div>
+          <div class="issue-title">Merkenavnet «69 Grader Ror» kastes bort</div>
+          <div class="issue-desc">Dere har et av de mest minneverdige navnene i bransjen — det refererer til breddegraden, det er unikt, det er lokalt forankret. Men uten en nettside som eier dette navnet, kan hvem som helst ta den digitale plassen.</div>
+        </div>
+        <div class="issue-badge">Hoy prioritet</div>
+      </div>
+      <div class="issue warning">
+        <div class="issue-icon">&#128176;</div>
+        <div>
+          <div class="issue-title">Betaler for reisetid fra Tromso-konkurrenter</div>
+          <div class="issue-desc">Kunder i Kafjord som ikke finner lokale alternativer ender opp med a betale dyrt for rorleggere som kjorer fra Tromso. Dere er allerede der — men kundene vet det ikke.</div>
+        </div>
+        <div class="issue-badge">Middels</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Hva dere gar glipp av hver maned</h2>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Antall sok</th>
+          <th>Klikk til dere</th>
+          <th>Konvertering</th>
+          <th>Snittjobb</th>
+          <th>Tapt manedlig</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>«rorlegger Kafjord/Nord-Troms»</td>
+          <td>~90/mnd</td>
+          <td class="red">0</td>
+          <td>—</td>
+          <td>35 000 kr</td>
+          <td class="red">—</td>
+        </tr>
+        <tr>
+          <td>«VVS Tromso/Troms»</td>
+          <td>~250/mnd</td>
+          <td class="red">0</td>
+          <td>—</td>
+          <td>50 000 kr</td>
+          <td class="red">—</td>
+        </tr>
+        <tr>
+          <td>Med nettside (estimat)</td>
+          <td>~340/mnd</td>
+          <td class="green">~12</td>
+          <td>3 %</td>
+          <td>40 000 kr</td>
+          <td class="green">+160 000 kr</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">
+      Estimater basert pa bransjesnitt for norske VVS-bedrifter og typisk lokalt sokevolum i Troms. Selv en ekstra jobb per maned dekker hele nettsideinvesteringen flere ganger.
+    </div>
+  </div>
+
+  <div class="block">
+    <h2>Potensiell inntektseffekt (ar 1)</h2>
+    <div class="rev-row">
+      <div class="rev-card">
+        <div class="rev-num">0</div>
+        <div class="rev-label">Digitale henvendelser<br>i dag (per maned)</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-num">2–4</div>
+        <div class="rev-label">Nye oppdrag fra nett<br>med nettside (per mnd)</div>
+      </div>
+      <div class="rev-card highlight">
+        <div class="rev-num">+1.2M</div>
+        <div class="rev-label">Estimert ekstra omsetning<br>forste ar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO CTA -->
+  <div class="demo-cta">
+    <div>
+      <h3>Vi har allerede bygd nettsiden deres</h3>
+      <p>Ikke en skisse — en ferdig, live nettside bygd spesifikt for 69 Grader Ror. Med kontaktskjema, tjenesteoversikt, akuttvakt-seksjon og det arktiske uttrykket dere fortjener. Se den na.</p>
+      <div class="demo-url">nyansikt.no/demo/69graderror</div>
+    </div>
+    <a href="#" class="btn-cta">Se live demo &rarr;</a>
+  </div>
+
+  <!-- DELIVERABLES -->
+  <div class="block">
+    <h2>Hva dere far med Nyansikt</h2>
+    <div class="del-grid">
+      <div class="del">
+        <div class="del-check">&#10003;</div>
+        <div>
+          <div class="del-title">Profesjonell nettside — klar pa 2 uker</div>
+          <div class="del-desc">Mork, arktisk design som matcher identiteten. Mobiloptimalisert med «ring na»-knapp for akuttkunder.</div>
+        </div>
+      </div>
+      <div class="del">
+        <div class="del-check">&#10003;</div>
+        <div>
+          <div class="del-title">69graderror.no — endelig i bruk</div>
+          <div class="del-desc">Vi peker domenet til den nye nettsiden i stedet for en katalog. Merkenavnet far det hjemmet det fortjener.</div>
+        </div>
+      </div>
+      <div class="del">
+        <div class="del-check">&#10003;</div>
+        <div>
+          <div class="del-title">Synlig i hele Nord-Troms pa Google</div>
+          <div class="del-desc">Lokal SEO som sikrer at dere dukker opp for «rorlegger Kafjord», «VVS Nord-Troms» og tilsvarende.</div>
+        </div>
+      </div>
+      <div class="del">
+        <div class="del-check">&#10003;</div>
+        <div>
+          <div class="del-title">Ingen binding — dere eier alt</div>
+          <div class="del-desc">Koden er deres. Ingen dyre abonnementer, ingen plattformlas. Full kontroll fra dag en.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT -->
+  <div class="next">
+    <p>
+      <strong>Ingen forpliktelse. Se demoen, ring oss, still sporsmal.</strong><br>
+      Vi tar en 15-minutters prat og gir dere et fast pristilbud. Ingen overraskelser.
+    </p>
+    <a href="#" class="btn-cta">Se live demo av 69graderror.no &rarr;</a>
+    <p class="small">
+      Sporsmal? Kontakt oss pa <strong>hei@nyansikt.no</strong>
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <span>Nyansikt &middot; hei@nyansikt.no</span>
+  <span>Utarbeidet for 69 Grader Ror AS &middot; Konfidensiell</span>
+</footer>
+
+</body>
+</html>
