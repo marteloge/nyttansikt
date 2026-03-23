@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="no" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventyrpost — Magiske brev til barnet ditt</title>
+  <meta name="description" content="En personlig eventyrfigur som skriver brev til barnet ditt. AI-personaliserte, fysiske brev som bygger leseferdigheter, emosjonell trygghet og barndomsmagi.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FFF8F0',
+            'cream-dark': '#F5EDE3',
+            gold: '#C9A84C',
+            'gold-light': '#E8D48B',
+            'gold-dark': '#A68A3E',
+            purple: {
+              50: '#F5F0FF',
+              100: '#EDE5FF',
+              200: '#D4C4F5',
+              300: '#B79DE8',
+              400: '#9B76D8',
+              500: '#7B4FBF',
+              600: '#6A3FA8',
+              700: '#553285',
+              800: '#3E2463',
+              900: '#2A1843',
+            },
+            forest: '#2D5A3D',
+            'forest-light': '#3D7A52',
+          },
+          fontFamily: {
+            display: ['"Georgia"', 'serif'],
+            body: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+            handwritten: ['"Caveat"', 'cursive'],
+          },
+          boxShadow: {
+            'letter': '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04)',
+            'letter-hover': '0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)',
+            'glow': '0 0 40px rgba(201,168,76,0.15)',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes sparkle { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes envelope-open { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(-180deg); } }
+    @keyframes slide-up { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes wiggle { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+    .float { animation: float 6s ease-in-out infinite; }
+    .sparkle { animation: sparkle 2s ease-in-out infinite; }
+    .sparkle-delay { animation: sparkle 2s ease-in-out infinite 0.5s; }
+    .sparkle-delay-2 { animation: sparkle 2s ease-in-out infinite 1s; }
+    .slide-up { animation: slide-up 0.8s ease-out forwards; }
+    .fade-in { animation: fade-in 1s ease-out forwards; }
+    .wiggle { animation: wiggle 3s ease-in-out infinite; }
+    .letter-paper {
+      background: linear-gradient(135deg, #FFF8F0 0%, #F5EDE3 100%);
+      border: 1px solid #E8D48B;
+    }
+    .wax-seal {
+      width: 56px; height: 56px;
+      background: radial-gradient(circle at 35% 35%, #C9564C, #8B2B24);
+      border-radius: 50%;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.25), inset -2px -2px 4px rgba(0,0,0,0.15), inset 2px 2px 4px rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .horn-gradient {
+      background: linear-gradient(135deg, #E8D48B 0%, #C9A84C 50%, #E8D48B 100%);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #7B4FBF 0%, #C9A84C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .envelope {
+      background: linear-gradient(145deg, #F5EDE3 0%, #E8D8C4 100%);
+      border: 2px solid #D4C4A8;
+    }
+    .step-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #C9A84C, transparent);
+    }
+    .pricing-popular {
+      border: 2px solid #C9A84C;
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.1), 0 8px 30px rgba(0,0,0,0.1);
+    }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    /* Custom scrollbar */
+    .letter-scroll::-webkit-scrollbar { width: 6px; }
+    .letter-scroll::-webkit-scrollbar-track { background: transparent; }
+    .letter-scroll::-webkit-scrollbar-thumb { background: #D4C4A8; border-radius: 3px; }
+    /* Mobile nav */
+    .mobile-menu { transition: transform 0.3s ease, opacity 0.3s ease; }
+    .mobile-menu.hidden { transform: translateY(-10px); opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body class="bg-cream font-body text-purple-900">
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="fixed top-0 w-full bg-cream/90 backdrop-blur-md z-50 border-b border-gold-light/30">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <span class="text-2xl">✉️</span>
+        <span class="font-display text-xl font-bold text-purple-800">Eventyrpost</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#slik-virker-det" class="text-purple-700 hover:text-purple-500 transition">Slik virker det</a>
+        <a href="#eksempel" class="text-purple-700 hover:text-purple-500 transition">Se et brev</a>
+        <a href="#forskning" class="text-purple-700 hover:text-purple-500 transition">Forskning</a>
+        <a href="#priser" class="text-purple-700 hover:text-purple-500 transition">Priser</a>
+        <a href="#venteliste" class="bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition font-medium">
+          Bli med &rarr;
+        </a>
+      </div>
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-purple-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu hidden md:hidden bg-cream border-t border-gold-light/30 px-4 py-4 space-y-3">
+      <a href="#slik-virker-det" class="block text-purple-700 py-2">Slik virker det</a>
+      <a href="#eksempel" class="block text-purple-700 py-2">Se et brev</a>
+      <a href="#forskning" class="block text-purple-700 py-2">Forskning</a>
+      <a href="#priser" class="block text-purple-700 py-2">Priser</a>
+      <a href="#venteliste" class="block bg-purple-600 text-white px-5 py-2.5 rounded-full text-center font-medium">Bli med &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="relative min-h-screen flex items-center overflow-hidden pt-16">
+    <!-- Background decorations -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 left-[10%] text-4xl sparkle opacity-30">✨</div>
+      <div class="absolute top-40 right-[15%] text-3xl sparkle-delay opacity-20">⭐</div>
+      <div class="absolute bottom-40 left-[20%] text-2xl sparkle-delay-2 opacity-25">🌟</div>
+      <div class="absolute top-60 right-[8%] text-5xl float opacity-10">🦄</div>
+      <div class="absolute bottom-20 right-[25%] text-3xl sparkle opacity-15">✨</div>
+      <!-- Subtle gradient orbs -->
+      <div class="absolute -top-20 -right-20 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-40 -left-20 w-96 h-96 bg-gold-light/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <!-- Left: Text -->
+        <div class="space-y-6 md:space-y-8">
+          <div class="inline-flex items-center gap-2 bg-purple-50 text-purple-600 text-sm font-medium px-4 py-1.5 rounded-full">
+            <span class="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+            Nytt konsept — lansering 2026
+          </div>
+          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight">
+            En magisk venn som skriver
+            <span class="gradient-text font-bold">ekte brev</span>
+            til barnet ditt
+          </h1>
+          <p class="text-lg md:text-xl text-purple-700/80 leading-relaxed max-w-lg">
+            Personlige eventyr levert i postkassen. Barnet ditt får en brevvenn
+            som kjenner dem, husker det de forteller, og hjelper dem forstå
+            store følelser — gjennom magi og eventyr.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#venteliste" class="bg-purple-600 text-white px-8 py-3.5 rounded-full text-center font-semibold text-lg hover:bg-purple-700 transition shadow-lg shadow-purple-600/20">
+              Få de 3 første brevene gratis ✨
+            </a>
+            <a href="#eksempel" class="border-2 border-purple-200 text-purple-700 px-8 py-3.5 rounded-full text-center font-semibold hover:bg-purple-50 transition">
+              Se et eksempelbrev
+            </a>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-purple-600/70 pt-2">
+            <span class="flex items-center gap-1.5">📬 Fysisk brev i posten</span>
+            <span class="flex items-center gap-1.5">🧠 Basert på forskning</span>
+            <span class="flex items-center gap-1.5">🇳🇴 Norsk</span>
+          </div>
+        </div>
+
+        <!-- Right: Visual (floating envelope + letter peek) -->
+        <div class="relative flex justify-center">
+          <div class="relative">
+            <!-- Envelope -->
+            <div class="envelope rounded-2xl p-8 md:p-10 shadow-letter max-w-sm mx-auto wiggle">
+              <!-- Wax seal -->
+              <div class="absolute -top-5 left-1/2 -translate-x-1/2 wax-seal z-10">
+                <span class="text-white text-lg font-bold">✦</span>
+              </div>
+              <!-- Letter peeking out -->
+              <div class="letter-paper rounded-lg p-6 -mt-2 shadow-sm">
+                <p class="font-handwritten text-xl text-purple-800 leading-relaxed">
+                  Kjære Alvilde,<br><br>
+                  Hei! Jeg heter Stjernedis.<br>
+                  Jeg er en enhjørning.<br><br>
+                  Jeg vet — du tenker kanskje<br>
+                  at enhjørninger ikke finnes.<br>
+                  Men vi finnes! Vi bor bare på<br>
+                  steder folk ikke ser...
+                </p>
+                <p class="font-handwritten text-lg text-gold-dark mt-4">✨ Stjernedis ✨</p>
+              </div>
+              <!-- Address line -->
+              <div class="mt-4 text-center">
+                <p class="font-handwritten text-lg text-purple-600">Til Alvilde — BARE til Alvilde!</p>
+              </div>
+            </div>
+            <!-- Floating extras -->
+            <div class="absolute -right-8 top-8 bg-white rounded-xl shadow-letter p-3 float" style="animation-delay: 1s">
+              <span class="text-3xl">⭐</span>
+              <p class="text-[10px] text-purple-600 font-medium mt-1">Klistremerke</p>
+            </div>
+            <div class="absolute -left-6 bottom-12 bg-white rounded-xl shadow-letter p-3 float" style="animation-delay: 2s">
+              <span class="text-3xl">💜</span>
+              <p class="text-[10px] text-purple-600 font-medium mt-1">Stoffhjerte</p>
+            </div>
+            <div class="absolute -right-4 -bottom-4 bg-white rounded-xl shadow-letter p-3 float" style="animation-delay: 0.5s">
+              <span class="text-3xl">✨</span>
+              <p class="text-[10px] text-purple-600 font-medium mt-1">Sovegull</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOCIAL PROOF BAR ==================== -->
+  <section class="bg-purple-800 text-white py-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900"></div>
+    <div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-center gap-x-10 gap-y-2 text-sm relative z-10">
+      <span class="flex items-center gap-2 opacity-90"><span class="text-gold-light">●</span> Ingen norsk konkurrent</span>
+      <span class="flex items-center gap-2 opacity-90"><span class="text-gold-light">●</span> Basert på bibliotherapy-forskning</span>
+      <span class="flex items-center gap-2 opacity-90"><span class="text-gold-light">●</span> Skjermfri opplevelse</span>
+      <span class="flex items-center gap-2 opacity-90"><span class="text-gold-light">●</span> Fremmer lesing og skriving</span>
+    </div>
+  </section>
+
+  <!-- ==================== PROBLEM / EMPATHY ==================== -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Kjenner du det igjen?</h2>
+        <p class="text-purple-600/70 text-lg">Hverdagsutfordringer som mange foreldre deler</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="bg-cream rounded-2xl p-6 border border-gold-light/20">
+          <span class="text-3xl mb-3 block">📱</span>
+          <h3 class="font-semibold text-lg mb-2">For mye skjermtid</h3>
+          <p class="text-purple-700/70 text-sm leading-relaxed">Du ønsker opplevelser som trekker barnet bort fra nettbrettet — men det er vanskelig å finne noe som fenger like mye.</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 border border-gold-light/20">
+          <span class="text-3xl mb-3 block">🎁</span>
+          <h3 class="font-semibold text-lg mb-2">Meningsfulle gaver</h3>
+          <p class="text-purple-700/70 text-sm leading-relaxed">Besteforeldre spør hva de skal gi. Du vil ha noe som betyr noe — ikke mer plast som havner i en skuff.</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 border border-gold-light/20">
+          <span class="text-3xl mb-3 block">💛</span>
+          <h3 class="font-semibold text-lg mb-2">Store følelser, få verktøy</h3>
+          <p class="text-purple-700/70 text-sm leading-relaxed">Barnet sliter med sjalusi, sinne eller frykt — men barnepsykolog har lang ventetid og koster 1 200 kr/time.</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 border border-gold-light/20">
+          <span class="text-3xl mb-3 block">📬</span>
+          <h3 class="font-semibold text-lg mb-2">Ingenting i posten</h3>
+          <p class="text-purple-700/70 text-sm leading-relaxed">Voksne får post. Barn aldri. Husker du spenningen av å finne noe med DITT navn i postkassen?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW IT WORKS ==================== -->
+  <section id="slik-virker-det" class="py-20 md:py-28 bg-cream">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Slik virker det</h2>
+        <p class="text-purple-600/70 text-lg">Fra registrering til magisk post i postkassen</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition">
+            <span class="text-3xl">🧒</span>
+          </div>
+          <div class="text-xs text-gold-dark font-semibold mb-2">STEG 1</div>
+          <h3 class="font-semibold mb-2">Fortell oss om barnet</h3>
+          <p class="text-sm text-purple-600/70">Navn, alder, interesser, kjæledyr, familiemedlemmer. Vi bygger en hel eventyrverden rundt barnets liv.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition">
+            <span class="text-3xl">🦄</span>
+          </div>
+          <div class="text-xs text-gold-dark font-semibold mb-2">STEG 2</div>
+          <h3 class="font-semibold mb-2">Velg eventyrfigur</h3>
+          <p class="text-sm text-purple-600/70">En enhjørning i Glitterdalen? En skogsalv i Bymarka? Et trollbarn under broen? Barnet velger sin brevvenn.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition">
+            <span class="text-3xl">📮</span>
+          </div>
+          <div class="text-xs text-gold-dark font-semibold mb-2">STEG 3</div>
+          <h3 class="font-semibold mb-2">Magisk post ankommer</h3>
+          <p class="text-sm text-purple-600/70">Annenhver uke: et personlig brev med vokssegl, klistremerker, og kanskje et lite stoffhjerte eller sovegull.</p>
+        </div>
+        <!-- Step 4 -->
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition">
+            <span class="text-3xl">✍️</span>
+          </div>
+          <div class="text-xs text-gold-dark font-semibold mb-2">STEG 4</div>
+          <h3 class="font-semibold mb-2">Barnet skriver tilbake</h3>
+          <p class="text-sm text-purple-600/70">En tegning, et brev, et spørsmål — du tar bilde og sender inn. Neste brev refererer til det barnet skrev!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXAMPLE LETTER ==================== -->
+  <section id="eksempel" class="py-20 md:py-28 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-100/30 rounded-full blur-3xl"></div>
+    <div class="max-w-5xl mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Se et ekte eksempelbrev</h2>
+        <p class="text-purple-600/70 text-lg">Dette er brev #2 til Alvilde (4 år). Temaet: å sove borte og være engstelig.</p>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-8 items-start">
+        <!-- Letter -->
+        <div class="md:col-span-3">
+          <div class="letter-paper rounded-2xl p-8 md:p-10 shadow-letter relative max-h-[600px] overflow-y-auto letter-scroll">
+            <!-- Wax seal decoration -->
+            <div class="absolute -top-4 right-8 wax-seal">
+              <span class="text-white text-sm">★</span>
+            </div>
+
+            <div class="font-handwritten text-xl md:text-2xl leading-relaxed text-purple-900 space-y-4">
+              <p>Kjære Alvilde,</p>
+
+              <p>Husker du jeg sa at noe skummelt skjedde?
+              Nå skal jeg fortelle deg.</p>
+
+              <p>Forrige uke spurte venninnen min Solmåne
+              om jeg ville sove over i HENNES dal.
+              Den heter Månedalen og ligger ganske langt borte.</p>
+
+              <p>Jeg sa ja. Men da kvelden kom...
+              fikk jeg vondt i magen.</p>
+
+              <p>Ikke syk-vondt. Men den type vondt der
+              magen sier: <em>«Jeg vil hjem. Jeg vil til min egen dal.
+              Jeg vil ha min egen plass å sove.»</em></p>
+
+              <p class="text-purple-600">Kjenner du den følelsen noen ganger?</p>
+
+              <p>Solmåne skjønte det med en gang.
+              Hun sa: «Du trenger ikke sove her hvis du ikke vil.
+              Men kan jeg vise deg et triks først?»</p>
+
+              <p>Og så lærte hun meg noe fint:</p>
+
+              <p class="bg-purple-50/50 rounded-xl p-4 text-lg">
+                «Legg deg ned. Kjenn at bakken holder deg.<br>
+                Pust innnnn... og tenk på den du er glad i.<br>
+                Pust uuuut... og send dem en usynlig klem.»
+              </p>
+
+              <p>Jeg tenkte på Snipp. Pust inn.<br>
+              Jeg tenkte på dalen min. Pust ut.<br>
+              Jeg tenkte på DEG, Alvilde. Pust inn.</p>
+
+              <p>Og vet du hva? Magen sluttet å si dumme ting.
+              Den ble helt stille og varm.</p>
+
+              <p class="text-gold-dark font-semibold">Vet du hva som er hemmeligheten?
+              Å være modig betyr ikke at man ikke er redd.
+              Det betyr at man er redd — og gjør det likevel.</p>
+
+              <p>Klem fra</p>
+              <p class="text-gold-dark text-2xl">✨ Stjernedis ✨</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annotations -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="bg-purple-50 rounded-xl p-5 border border-purple-100">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🧠</span>
+              <h4 class="font-semibold text-sm text-purple-800">Bibliotherapy i praksis</h4>
+            </div>
+            <p class="text-sm text-purple-600/80">Karakteren opplever det samme som barnet — separasjonsangst. Barnet identifiserer seg, og får verktøy (pusteøvelse) uten å føle seg «behandlet».</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-5 border border-purple-100">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🎯</span>
+              <h4 class="font-semibold text-sm text-purple-800">Personalisert</h4>
+            </div>
+            <p class="text-sm text-purple-600/80">Alvilde (4 år) med brødrene Olai og Eilert. Brevvennen speiler familiestrukturen — Snipp er hennes "lillebror" i eventyret.</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-5 border border-purple-100">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">💜</span>
+              <h4 class="font-semibold text-sm text-purple-800">Fysisk vedlegg</h4>
+            </div>
+            <p class="text-sm text-purple-600/80">Et lite lilla stoffhjerte i konvolutten. Barnet kan klemme det og «sende en usynlig klem til Glitterdalen». Et fysisk anker for tryggheten.</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-5 border border-purple-100">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-lg">🪝</span>
+              <h4 class="font-semibold text-sm text-purple-800">Cliffhanger</h4>
+            </div>
+            <p class="text-sm text-purple-600/80">«Neste gang skal jeg fortelle deg om kvelden da HELE Glitterdalen ikke fikk sove...» — barnet VENTER på neste brev.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CHARACTERS ==================== -->
+  <section class="py-20 md:py-28 bg-cream">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Velg eventyrfigur</h2>
+        <p class="text-purple-600/70 text-lg">Barnet velger hvem som skal bli brevvennen deres</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Character 1: Stjernedis -->
+        <div class="bg-white rounded-2xl p-6 shadow-letter hover:shadow-letter-hover transition-all cursor-pointer group border-2 border-transparent hover:border-purple-200">
+          <div class="w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+            <span class="text-4xl">🦄</span>
+          </div>
+          <h3 class="font-display text-xl text-center font-bold mb-1">Stjernedis</h3>
+          <p class="text-gold-dark text-sm text-center mb-3">Enhjørning av Glitterdalen</p>
+          <p class="text-sm text-purple-600/70 text-center leading-relaxed">
+            Bor i en hemmelig dal bak fjellene. Hornet hennes lyser i mørket og skifter farge med humøret.
+            Spesielt god på <strong>følelser, trøst og modige eventyr</strong>.
+          </p>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="text-xs bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full">3-6 år</span>
+            <span class="text-xs bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full">Følelser</span>
+            <span class="text-xs bg-purple-50 text-purple-600 px-2.5 py-1 rounded-full">Magi</span>
+          </div>
+        </div>
+
+        <!-- Character 2: Frøya -->
+        <div class="bg-white rounded-2xl p-6 shadow-letter hover:shadow-letter-hover transition-all cursor-pointer group border-2 border-transparent hover:border-forest/20">
+          <div class="w-20 h-20 bg-gradient-to-br from-green-100 to-emerald-200 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+            <span class="text-4xl">🧚</span>
+          </div>
+          <h3 class="font-display text-xl text-center font-bold mb-1">Alven Frøya</h3>
+          <p class="text-forest text-sm text-center mb-3">Skogsalv av Bymarka Alvedistrikt</p>
+          <p class="text-sm text-purple-600/70 text-center leading-relaxed">
+            Bor inne i den eldste eika i skogen nær barnet. Snakker med dyr, lager kart, og trenger hjelp med
+            <strong>gåter, tegning og norsk natur</strong>.
+          </p>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="text-xs bg-green-50 text-forest px-2.5 py-1 rounded-full">5-9 år</span>
+            <span class="text-xs bg-green-50 text-forest px-2.5 py-1 rounded-full">Eventyr</span>
+            <span class="text-xs bg-green-50 text-forest px-2.5 py-1 rounded-full">Natur</span>
+          </div>
+        </div>
+
+        <!-- Character 3: Ull -->
+        <div class="bg-white rounded-2xl p-6 shadow-letter hover:shadow-letter-hover transition-all cursor-pointer group border-2 border-transparent hover:border-blue-200">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-100 to-indigo-200 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+            <span class="text-4xl">🧌</span>
+          </div>
+          <h3 class="font-display text-xl text-center font-bold mb-1">Trollungen Ull</h3>
+          <p class="text-blue-600 text-sm text-center mb-3">Bor under broen i Bergen</p>
+          <p class="text-sm text-purple-600/70 text-center leading-relaxed">
+            Verdens morsomste troll som stadig havner i trøbbel. Elsker <strong>gåter, skøyerstreker og å
+            lære rare fakta</strong>. Perfekt for barn som vil le og lure.
+          </p>
+          <div class="flex flex-wrap justify-center gap-1.5 mt-4">
+            <span class="text-xs bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">4-8 år</span>
+            <span class="text-xs bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">Humor</span>
+            <span class="text-xs bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">Gåter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== KEY FEATURES ==================== -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Mer enn bare brev</h2>
+        <p class="text-purple-600/70 text-lg">Funksjoner som gjør Eventyrpost unikt</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Feature: Livshendelser -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🫶</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Livshendelse-historier</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed mb-3">
+                Barnet ditt skal begynne i barnehage? Får søsken? Er redd for mørket?
+                Aktiver en livshendelse — eventyrvennen opplever det <em>samme</em> i sin verden.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="text-xs bg-white border border-purple-100 text-purple-600 px-2.5 py-1 rounded-full">Ny barnehage</span>
+                <span class="text-xs bg-white border border-purple-100 text-purple-600 px-2.5 py-1 rounded-full">Få søsken</span>
+                <span class="text-xs bg-white border border-purple-100 text-purple-600 px-2.5 py-1 rounded-full">Mørkeredd</span>
+                <span class="text-xs bg-white border border-purple-100 text-purple-600 px-2.5 py-1 rounded-full">Flytte</span>
+                <span class="text-xs bg-white border border-purple-100 text-purple-600 px-2.5 py-1 rounded-full">Sjalusi</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature: Foreldrebrev -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">💌</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Foreldrebrev i vanskelige tider</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed">
+                Når familien går gjennom noe vanskelig, sender eventyrvennen et eget brev til
+                <em>dere</em> foreldre. Anerkjennende, varmt, fra eventyrverdenens perspektiv.
+                «Alvilde og jeg har det fint. Dere er gode nok.»
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature: Barnets verden -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">👨‍👩‍👧‍👦</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Barnets verden speiles i eventyret</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed">
+                Mamma, pappa, lillebror, bestevenn, kjæledyr — alle speiles som karakterer i eventyrverden.
+                Barnet gjenkjenner sin egen familie uten at det sies direkte.
+                Omsorg veksler mellom mamma- og pappafiguren.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature: Følelsesobjekter -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🎨</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Farger og gjenstander som speiler følelser</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed">
+                Stjernedis' horn skifter farge: gult (glad), rødt (sint), blått (trist). Fysiske vedlegg
+                speiler temaet — et stoffhjerte for trygghet, sovegull for ro, en storesøster-stjerne for
+                anerkjennelse. Barnet får et språk for følelser.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature: Minnebok -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">📖</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Minneboken</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed">
+                Alle brevene, tegningene, og eventyrene samlet i en vakker bok — digitalt eller trykt.
+                Tenk deg å åpne den når barnet er 15 år. En hel barndom i én bok.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature: Etisk avslutning -->
+        <div class="bg-cream rounded-2xl p-8 border border-gold-light/20">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <span class="text-2xl">🤝</span>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg mb-2">Mennesket først — alltid</h3>
+              <p class="text-sm text-purple-600/70 leading-relaxed">
+                Ingen venner forsvinner brått. Vil du pause? Eventyrvennen «reiser». Vil du avslutte?
+                Et vakkert avskjedsbrev. Vil barnet gi vennen videre? Det kan de.
+                Vi setter alltid barnet foran business.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESEARCH ==================== -->
+  <section id="forskning" class="py-20 md:py-28 bg-purple-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900"></div>
+    <div class="absolute top-10 left-10 text-6xl opacity-5">📚</div>
+    <div class="absolute bottom-10 right-10 text-6xl opacity-5">🧠</div>
+
+    <div class="max-w-5xl mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 bg-white/10 text-gold-light text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+          Forskning
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Hvorfor eventyr hjelper barn forstå følelser</h2>
+        <p class="text-purple-200 text-lg max-w-2xl mx-auto">Eventyrpost bygger på bibliotherapy — en veldokumentert metode der fortellinger brukes som verktøy for emosjonell utvikling.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div class="text-3xl mb-3">🔬</div>
+          <h3 class="font-semibold text-lg mb-2 text-gold-light">Meta-analyse: 979 barn</h3>
+          <p class="text-sm text-purple-200 leading-relaxed">
+            Yuan et al. (2018) analyserte 8 kontrollerte studier og fant at bibliotherapy er
+            <strong class="text-white">signifikant mer effektivt</strong> enn kontrollgrupper for å redusere
+            angst og depresjon hos barn.
+          </p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="font-semibold text-lg mb-2 text-gold-light">Trygg avstand</h3>
+          <p class="text-sm text-purple-200 leading-relaxed">
+            Fiksjon lar barn engasjere seg med vanskelige følelser gjennom en karakter —
+            uten å bli overveldet. Barnet kan utforske frykt, sinne og tristhet fra en
+            <strong class="text-white">trygg distanse</strong>.
+          </p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div class="text-3xl mb-3">📖</div>
+          <h3 class="font-semibold text-lg mb-2 text-gold-light">Emosjonelt vokabular</h3>
+          <p class="text-sm text-purple-200 leading-relaxed">
+            Dong & Nation (2025) viste at barnebøker inneholder
+            <strong class="text-white">flere unike følelses-ord</strong> enn både foreldrespråk og TV.
+            Barn lærer å sette ord på følelser gjennom fortellinger.
+          </p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div class="text-3xl mb-3">✍️</div>
+          <h3 class="font-semibold text-lg mb-2 text-gold-light">Brevskriving som verktøy</h3>
+          <p class="text-sm text-purple-200 leading-relaxed">
+            Innen narrativ terapi (White & Epston) brukes brev til å eksternalisere problemer.
+            Forskning viser at det er
+            <strong class="text-white">lettere for barn å skrive enn å snakke</strong> om vanskelige følelser.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-3xl mx-auto text-center">
+        <p class="text-lg md:text-xl text-purple-100 italic leading-relaxed mb-4">
+          «Barn i alderen 5-8 er den mest responsive gruppen. 67% av studier viser positiv effekt
+          på mental helse gjennom kreativ bibliotherapy — forutsatt strukturert interaksjon.»
+        </p>
+        <p class="text-sm text-purple-300">— Systematisk review, Arts & Health (2025), 23 studier av kreativ bibliotherapy i skoler</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BREVTYPER ==================== -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Tre typer brev — du velger</h2>
+        <p class="text-purple-600/70 text-lg">Miks og match etter barnets behov</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-cream rounded-2xl p-6 border-2 border-purple-100 hover:border-purple-300 transition text-center">
+          <span class="text-4xl mb-3 block">✨</span>
+          <h3 class="font-display text-xl font-bold mb-2">Eventyrbrev</h3>
+          <p class="text-sm text-purple-600/70 leading-relaxed">
+            Ren magi! Eventyrvennen har funnet en mystisk sti, trenger hjelp med en gåte.
+            Kart, koder, klistremerker. Barnet ler og drømmer.
+          </p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 border-2 border-green-100 hover:border-green-300 transition text-center">
+          <span class="text-4xl mb-3 block">📚</span>
+          <h3 class="font-display text-xl font-bold mb-2">Lærebrev</h3>
+          <p class="text-sm text-purple-600/70 leading-relaxed">
+            Eventyrvennen har oppdaget rare symboler — det er bokstaver! Tall, ord, naturfenomener —
+            pedagogikk pakket inn i narrativ.
+          </p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition text-center">
+          <span class="text-4xl mb-3 block">💛</span>
+          <h3 class="font-display text-xl font-bold mb-2">Hjertebrev</h3>
+          <p class="text-sm text-purple-600/70 leading-relaxed">
+            Eventyrvennen forteller om da hen var redd, sint eller trist — og hvordan det gikk.
+            Bibliotherapy via brev. For barn som trenger å bli sett.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section id="priser" class="py-20 md:py-28 bg-cream">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Enkel prising, stor magi</h2>
+        <p class="text-purple-600/70 text-lg">Ingen binding. Pause eller avslutt når som helst.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <!-- Tier 1: Snarvei -->
+        <div class="bg-white rounded-2xl p-6 shadow-letter">
+          <div class="text-center mb-6">
+            <h3 class="font-display text-xl font-bold mb-1">Snarvei</h3>
+            <p class="text-sm text-purple-600/60 mb-4">Prøv magien</p>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-4xl font-bold text-purple-800">129</span>
+              <span class="text-purple-600/60">kr/mnd</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>1 personlig brev per måned</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Vokssegl + klistremerker</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Personalisert med barnets navn, alder og by</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700/40">
+              <span class="mt-0.5">—</span>
+              <span>Kun eventyrbrev</span>
+            </li>
+          </ul>
+          <a href="#venteliste" class="block w-full text-center border-2 border-purple-200 text-purple-700 py-2.5 rounded-full font-semibold hover:bg-purple-50 transition">
+            Velg Snarvei
+          </a>
+        </div>
+
+        <!-- Tier 2: Eventyrvenn (Popular) -->
+        <div class="bg-white rounded-2xl p-6 pricing-popular relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-white text-xs font-bold px-4 py-1 rounded-full">
+            Mest populær
+          </div>
+          <div class="text-center mb-6">
+            <h3 class="font-display text-xl font-bold mb-1">Eventyrvenn</h3>
+            <p class="text-sm text-purple-600/60 mb-4">Full opplevelse</p>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-4xl font-bold text-purple-800">199</span>
+              <span class="text-purple-600/60">kr/mnd</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span><strong>2 brev per måned</strong></span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Vokssegl, klistremerker + fysiske extras</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Dyp personalisering (interesser, kjæledyr, familie)</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Alle brevtyper (eventyr, lær, hjerte)</span>
+            </li>
+          </ul>
+          <a href="#venteliste" class="block w-full text-center bg-purple-600 text-white py-2.5 rounded-full font-semibold hover:bg-purple-700 transition">
+            Velg Eventyrvenn ✨
+          </a>
+        </div>
+
+        <!-- Tier 3: Bestevennen -->
+        <div class="bg-white rounded-2xl p-6 shadow-letter">
+          <div class="text-center mb-6">
+            <h3 class="font-display text-xl font-bold mb-1">Bestevennen</h3>
+            <p class="text-sm text-purple-600/60 mb-4">Alt + ekstra magi</p>
+            <div class="flex items-baseline justify-center gap-1">
+              <span class="text-4xl font-bold text-purple-800">299</span>
+              <span class="text-purple-600/60">kr/mnd</span>
+            </div>
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span><strong>Alt i Eventyrvenn +</strong></span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>To-veis brevvenn (barnet skriver tilbake!)</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Brevplan — se og tilpass kommende brev</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Foreldrebrev + livshendelse-historier</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-purple-700">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span>Bursdagsbrev inkludert</span>
+            </li>
+          </ul>
+          <a href="#venteliste" class="block w-full text-center border-2 border-purple-200 text-purple-700 py-2.5 rounded-full font-semibold hover:bg-purple-50 transition">
+            Velg Bestevennen
+          </a>
+        </div>
+      </div>
+
+      <!-- Gift callout -->
+      <div class="mt-12 bg-white rounded-2xl p-8 shadow-letter max-w-3xl mx-auto text-center">
+        <span class="text-3xl mb-3 block">🎁</span>
+        <h3 class="font-display text-xl font-bold mb-2">Den perfekte gaven fra besteforeldre</h3>
+        <p class="text-sm text-purple-600/70 mb-4 max-w-xl mx-auto">
+          Gi et helt år med eventyr. Forhåndsbetalte gavepakker fra <strong>549 kr</strong> (3 mnd) til <strong>2 699 kr</strong> (12 mnd).
+          Etter 12 måneder får giveren et personlig takkebrev fra eventyrvennen.
+        </p>
+        <a href="#venteliste" class="inline-block bg-gold text-white px-6 py-2.5 rounded-full font-semibold hover:bg-gold-dark transition">
+          Se gavepakker &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Spørsmål & svar</h2>
+      </div>
+      <div class="space-y-4">
+        <details class="bg-cream rounded-xl border border-gold-light/20 group">
+          <summary class="p-5 cursor-pointer font-semibold flex items-center justify-between">
+            Er det etisk å lage en «fiktiv venn» for barn?
+            <span class="text-purple-400 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-purple-600/80 leading-relaxed space-y-2">
+            <p>Vi har tatt dette spørsmålet på dypeste alvor. Forskning viser at 20-65% av barn naturlig skaper
+            imaginære venner — det er et tegn på kreativitet og sosial intelligens. Eventyrpost er en <em>strukturert</em>
+            versjon av dette.</p>
+            <p>Viktige forskjeller fra problematiske AI-chatbots: Brevformat betyr ingen avhengighetsskapende
+            feedback-loops, null skjermtid, full foreldretransparens, og naturlig avgrensning (dager mellom hvert brev).
+            Det er mer likt å lese en bok enn å chatte med en bot.</p>
+            <p>Vi følger prinsippet <strong>«Mennesket først»</strong>: ingen venner forsvinner brått. Pause =
+            eventyrvennen «reiser». Avslutning = et vakkert avskjedsbrev. Alltid en narrativ bro.</p>
+          </div>
+        </details>
+
+        <details class="bg-cream rounded-xl border border-gold-light/20 group">
+          <summary class="p-5 cursor-pointer font-semibold flex items-center justify-between">
+            Hvem skriver brevene? Er det AI?
+            <span class="text-purple-400 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-purple-600/80 leading-relaxed space-y-2">
+            <p>Brevene genereres med AI-teknologi basert på barnets profil, interesser og historieposisjon.
+            Alle brev gjennomgår kvalitetskontroll. Vi er transparente om at AI er involvert — for barnet
+            er det eventyrvennen som skriver, og for foreldrene er det et verktøy bygget med omsorg.</p>
+            <p>AI-et er det som muliggjør dyp personalisering. Brevvennen husker hva barnet fortalte sist,
+            kjenner familiestrukturen, og kan tilpasse historien til barnets livssituasjon — noe ingen
+            ferdigskrevet brevtjeneste kan gjøre.</p>
+          </div>
+        </details>
+
+        <details class="bg-cream rounded-xl border border-gold-light/20 group">
+          <summary class="p-5 cursor-pointer font-semibold flex items-center justify-between">
+            Hva med personvern og GDPR?
+            <span class="text-purple-400 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-purple-600/80 leading-relaxed space-y-2">
+            <p>Foreldre oppretter konto og gir samtykke. Vi samler kun det nødvendige: fornavn, alder, by
+            og interesser (aldri etternavn, personnummer e.l.). Barnas tegninger/brev lagres kun mens
+            abonnementet er aktivt. Ved avslutning kan foreldre laste ned Minneboken, deretter slettes data.</p>
+            <p>Ingen tredjepartssporing. Ingen reklame. Full GDPR-compliance.</p>
+          </div>
+        </details>
+
+        <details class="bg-cream rounded-xl border border-gold-light/20 group">
+          <summary class="p-5 cursor-pointer font-semibold flex items-center justify-between">
+            Hva skjer når vi vil slutte?
+            <span class="text-purple-400 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-purple-600/80 leading-relaxed space-y-2">
+            <p>Ingen binding! Du velger mellom tre alternativer:</p>
+            <p><strong>⏸️ Pause:</strong> Eventyrvennen «reiser» — barnet får et pausebrev. Kan aktiveres igjen når som helst.</p>
+            <p><strong>💌 Avslutt:</strong> Et vakkert avskjedsbrev der eventyrvennen sier at barnet er «modig nok, sterk nok, og snill nok helt på egen hånd».</p>
+            <p><strong>🎁 Gi videre:</strong> Barnet kan «sende» eventyrvennen til en venn som trenger en brevvenn.</p>
+            <p>Uansett valg får du Minneboken — alle brevene samlet.</p>
+          </div>
+        </details>
+
+        <details class="bg-cream rounded-xl border border-gold-light/20 group">
+          <summary class="p-5 cursor-pointer font-semibold flex items-center justify-between">
+            Hvilken aldersgruppe passer dette for?
+            <span class="text-purple-400 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-purple-600/80 leading-relaxed space-y-2">
+            <p><strong>3-10 år.</strong> Språk og innhold tilpasses barnets alder automatisk. For de yngste (3-5) er
+            brevene enklere med mer fokus på tegninger og fysiske vedlegg. For eldre barn (7-10) blir
+            historiene mer komplekse med gåter og interaktive elementer.</p>
+            <p>Forskning viser at aldersgruppen 5-8 er den mest responsive for bibliotherapy — 67% av studier
+            viser positiv effekt på mental helse.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WAITLIST CTA ==================== -->
+  <section id="venteliste" class="py-20 md:py-28 bg-gradient-to-b from-purple-800 to-purple-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-10 left-[10%] text-4xl sparkle opacity-10">✨</div>
+      <div class="absolute bottom-20 right-[15%] text-3xl sparkle-delay opacity-10">⭐</div>
+      <div class="absolute top-40 right-[10%] text-5xl float opacity-5">🦄</div>
+    </div>
+
+    <div class="max-w-2xl mx-auto px-4 text-center relative z-10">
+      <span class="text-5xl mb-6 block">✉️</span>
+      <h2 class="font-display text-3xl md:text-4xl mb-4">Gi barnet ditt en magisk brevvenn</h2>
+      <p class="text-purple-200 text-lg mb-8 max-w-lg mx-auto">
+        Vi lanserer snart. Meld deg på ventelisten og få de 3 første brevene gratis
+        ved lansering.
+      </p>
+
+      <!-- Signup form -->
+      <form class="max-w-md mx-auto space-y-3" onsubmit="handleSignup(event)">
+        <input type="text" placeholder="Ditt navn" required
+          class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-purple-300
+          focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+        <input type="email" placeholder="Din e-postadresse" required
+          class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-purple-300
+          focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+        <select class="w-full px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-purple-200
+          focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+          <option value="" class="text-purple-900">Barnets alder</option>
+          <option value="3" class="text-purple-900">3 år</option>
+          <option value="4" class="text-purple-900">4 år</option>
+          <option value="5" class="text-purple-900">5 år</option>
+          <option value="6" class="text-purple-900">6 år</option>
+          <option value="7" class="text-purple-900">7 år</option>
+          <option value="8" class="text-purple-900">8 år</option>
+          <option value="9" class="text-purple-900">9 år</option>
+          <option value="10" class="text-purple-900">10 år</option>
+        </select>
+        <button type="submit"
+          class="w-full bg-gold text-white py-3.5 rounded-xl font-bold text-lg hover:bg-gold-dark transition shadow-lg shadow-gold/20">
+          Ja, gi meg 3 gratis brev! ✨
+        </button>
+        <p class="text-xs text-purple-300/60">Ingen spam. Kun magi i innboksen.</p>
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="signup-success" class="hidden mt-6 bg-white/10 rounded-2xl p-6 border border-white/20">
+        <span class="text-4xl block mb-3">🎉</span>
+        <h3 class="font-semibold text-lg mb-2">Du er på ventelisten!</h3>
+        <p class="text-purple-200 text-sm">Vi sender deg en melding når Eventyrpost er klar. De 3 første brevene er dine — gratis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-purple-950 text-purple-300 py-12">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">✉️</span>
+          <span class="font-display text-lg font-bold text-white">Eventyrpost</span>
+        </div>
+        <div class="flex gap-8 text-sm">
+          <a href="#slik-virker-det" class="hover:text-white transition">Slik virker det</a>
+          <a href="#forskning" class="hover:text-white transition">Forskning</a>
+          <a href="#priser" class="hover:text-white transition">Priser</a>
+        </div>
+        <div class="text-sm text-purple-400">
+          &copy; 2026 Eventyrpost. Laget med 💜 i Norge.
+        </div>
+      </div>
+      <div class="mt-8 pt-6 border-t border-purple-800/50 text-center text-xs text-purple-500">
+        <p>Eventyrpost er et konsept under utvikling. Prisene er foreløpige.</p>
+        <p class="mt-1">Bygget på forskning innen bibliotherapy, narrativ terapi, og sosial-emosjonell læring.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSignup(e) {
+      e.preventDefault();
+      const form = e.target;
+      form.classList.add('hidden');
+      document.getElementById('signup-success').classList.remove('hidden');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.add('hidden');
+      });
+    });
+
+    // Smooth reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section > div > .text-center, section > div > .grid').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
